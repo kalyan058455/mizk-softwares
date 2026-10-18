@@ -3,138 +3,178 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Sample website by MizK Softwares for local businesses in Port Blair.">
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Sample Business Website | MizK Softwares</title>
+<meta name="description" content="See how your business website could look. Built by MizK Softwares, Port Blair. From ₹3,300, ready in 5 days.">
+<meta property="og:title" content="Your business website, ready in 5 days | MizK Softwares">
+<meta property="og:description" content="A sample website for shops, restaurants, salons and gyms in Port Blair. From ₹3,300.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&h=630&q=70">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Lato:wght@400;700&display=swap">
 <style>
-/* Layout: demo strip, then a full-bleed lagoon hero, then alternating bands of offerings, gallery, reviews, visit info, contact */
+/* Classic layout: owner ribbon, sticky nav, full-photo hero, about split, offers, stats strip, gallery, reviews, visit+booking, "get this website" band */
 :root{
-  --bg:#f5f8f7; --surface:#ffffff; --ink:#0d2a33; --muted:#4c6b72; --line:#d6e3e1;
-  --lagoon:#0e7c74; --lagoon-deep:#0a4d4f; --sun:#f2b43c; --on-lagoon:#f3fbf9; --chip:#e4f2ef;
-  --display:"Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
-  --body:"Figtree", "Segoe UI", system-ui, sans-serif;
-  --r:14px;
+  --ink:#1c1a17; --body:#4a453e; --paper:#fbf8f3; --white:#ffffff; --line:#e7dfd2;
+  --gold:#b8862f; --gold-soft:#f3e7cf; --night:#141a1f; --green:#1f8f4e;
+  --serif:"Playfair Display", Georgia, "Times New Roman", serif;
+  --sans:"Lato", "Segoe UI", Helvetica, Arial, sans-serif;
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#08191e; --surface:#0f252b; --ink:#e6f2f0; --muted:#9bb7b8; --line:#1f3b41;
-  --lagoon:#2bb3a5; --lagoon-deep:#0b3a3e; --sun:#f5c35e; --on-lagoon:#f3fbf9; --chip:#143238; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#08191e; --surface:#0f252b; --ink:#e6f2f0; --muted:#9bb7b8; --line:#1f3b41;
-  --lagoon:#2bb3a5; --lagoon-deep:#0b3a3e; --sun:#f5c35e; --on-lagoon:#f3fbf9; --chip:#143238; color-scheme:dark}
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body)}
-h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--body);font:17px/1.65 var(--sans);padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);line-height:1.15;margin:0;text-wrap:balance}
 p{margin:0}
 a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.kicker{font:700 12px var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:700 15px var(--sans);letter-spacing:.03em;padding:14px 26px;border-radius:4px;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s, background .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#fff}
+.btn-line{border-color:rgba(255,255,255,.75);color:#fff}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-wa{background:var(--green);color:#fff}
 
-/* demo strip */
-.demo{background:var(--ink);color:var(--bg);font-size:14px}
-.demo .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;padding-block:10px}
-.demo b{font-weight:600}
-.switch{display:flex;flex-wrap:wrap;gap:6px}
-.switch button{font:600 13px var(--body);border:1px solid color-mix(in srgb,var(--bg) 35%,transparent);background:transparent;color:var(--bg);padding:6px 12px;border-radius:999px;cursor:pointer}
-.switch button[aria-pressed="true"]{background:var(--sun);border-color:var(--sun);color:#1b1404}
+/* owner ribbon */
+.ribbon{background:var(--night);color:#e9e3d8;font-size:14px}
+.ribbon .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px;padding-top:10px;padding-bottom:10px}
+.ribbon b{color:#fff}
+.types{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.types span{opacity:.7;margin-right:4px}
+.types button{font:700 13px var(--sans);background:transparent;color:#e9e3d8;border:1px solid rgba(233,227,216,.35);padding:6px 13px;border-radius:999px;cursor:pointer}
+.types button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
 
-/* header */
-header.site{background:var(--surface);border-bottom:1px solid var(--line)}
-header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
-.brand{display:flex;align-items:center;gap:10px;font:800 20px var(--display);text-decoration:none}
-.mark{width:36px;height:36px;border-radius:10px;background:var(--lagoon);display:grid;place-items:center;color:var(--on-lagoon);font-size:18px}
-nav.links{display:flex;gap:22px;font-weight:500;color:var(--muted)}
-nav.links a{text-decoration:none}
-nav.links a:hover{color:var(--ink)}
-.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px var(--body);padding:11px 18px;border-radius:999px;text-decoration:none;border:0;cursor:pointer}
-.btn-sun{background:var(--sun);color:#1b1404}
-.btn-ghost{background:transparent;color:var(--on-lagoon);border:1.5px solid color-mix(in srgb,var(--on-lagoon) 55%,transparent)}
-@media (max-width:760px){nav.links{display:none}}
+/* nav */
+nav.top{position:sticky;top:0;z-index:30;background:rgba(251,248,243,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:14px;padding-bottom:14px}
+.logo{font:700 24px var(--serif);color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.logo small{display:block;font:700 10px var(--sans);letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-top:2px}
+.menu{display:flex;gap:28px;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase}
+.menu a{text-decoration:none;color:var(--body)}
+.menu a:hover{color:var(--gold)}
+@media (max-width:860px){.menu{display:none}}
 
 /* hero */
-.hero{background:linear-gradient(160deg,var(--lagoon) 0%,var(--lagoon-deep) 100%);color:var(--on-lagoon);position:relative;overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;padding-block:64px 72px;position:relative;z-index:1}
-.eyebrow{font:600 13px var(--body);letter-spacing:.12em;text-transform:uppercase;opacity:.85}
-.hero h1{font-size:clamp(38px,6vw,68px);font-weight:800;margin:14px 0 16px;letter-spacing:-.02em}
-.hero p.lead{font-size:18px;max-width:52ch;opacity:.92}
-.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
-.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.fact{background:color-mix(in srgb,var(--on-lagoon) 14%,transparent);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:500}
-.card-hours{background:var(--surface);color:var(--ink);border-radius:var(--r);padding:24px;align-self:end;box-shadow:0 18px 40px rgb(0 0 0 / .18)}
-.card-hours h3{font-size:18px;margin-bottom:12px}
-.hours{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:15px;font-variant-numeric:tabular-nums}
-.hours dt{color:var(--muted)}
-.hours dd{margin:0;text-align:right}
-.open{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;margin-bottom:14px;color:var(--lagoon)}
-.open::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor}
-.waves{position:absolute;left:0;right:0;bottom:-1px;height:70px;z-index:0}
-.waves path{fill:var(--bg)}
-@media (max-width:820px){.hero .wrap{grid-template-columns:1fr;padding-block:44px 64px}}
+.hero{position:relative;min-height:640px;display:flex;align-items:center;color:#fff;background:#2b2b2b center/cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,.82) 0%,rgba(10,10,10,.55) 50%,rgba(10,10,10,.2) 100%)}
+.hero .wrap{position:relative;width:100%;padding-top:90px;padding-bottom:90px}
+.hero .kicker{color:#e8c98a}
+.hero h1{color:#fff;font-size:clamp(40px,6.4vw,76px);margin:18px 0 20px;max-width:13ch}
+.hero h1 em{color:#e8c98a;font-style:italic}
+.hero p{font-size:19px;max-width:52ch;color:#efe9df}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.badges{display:flex;flex-wrap:wrap;gap:22px;margin-top:40px;font-size:15px;color:#efe9df}
+.badges div{display:flex;align-items:center;gap:8px}
+.stars{color:#e8c98a;letter-spacing:2px}
+@media (max-width:640px){.hero{min-height:560px}.hero .wrap{padding-top:64px;padding-bottom:64px}}
 
 /* sections */
-section.band{padding-block:64px}
-.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px;margin-bottom:28px}
-.sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:700}
-.sec-head p{color:var(--muted);max-width:46ch}
-.offer-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.offer{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:8px}
-.offer .top{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
-.offer h3{font-size:18px;font-weight:700}
-.price{font:700 17px var(--display);color:var(--lagoon);white-space:nowrap;font-variant-numeric:tabular-nums}
-.offer p{color:var(--muted);font-size:15px}
-.tag{align-self:flex-start;background:var(--chip);color:var(--lagoon);font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px}
+section{padding-top:96px;padding-bottom:96px}
+@media (max-width:640px){section{padding-top:64px;padding-bottom:64px}}
+.head{text-align:center;max-width:640px;margin:0 auto 48px}
+.head h2{font-size:clamp(32px,4.4vw,48px);margin-top:10px}
+.head p{margin-top:14px}
+.rule{width:60px;height:2px;background:var(--gold);margin:18px auto 0}
 
-.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.tile{aspect-ratio:1;max-width:100%;border-radius:var(--r);display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:600;font-size:14px;text-shadow:0 1px 3px rgb(0 0 0 / .4)}
-.tile.big{grid-column:span 2;grid-row:span 2;aspect-ratio:auto}
-@media (max-width:640px){.gallery{grid-template-columns:repeat(2,1fr)}.tile.big{grid-row:span 1;aspect-ratio:2/1}}
+.about{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about .photo{position:relative}
+.about .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;background:#d9d2c5}
+.about .photo::after{content:"";position:absolute;inset:22px -22px -22px 22px;border:2px solid var(--gold);border-radius:4px;z-index:-1}
+.about h2{font-size:clamp(30px,4vw,44px);margin:12px 0 20px}
+.about p+p{margin-top:14px}
+.checks{list-style:none;padding:0;margin:26px 0 0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.checks li{display:flex;gap:10px;align-items:flex-start;color:var(--ink);font-weight:700;font-size:15px}
+.checks li::before{content:"✓";color:var(--gold);font-weight:700}
+@media (max-width:860px){.about{grid-template-columns:1fr;gap:48px}.about .photo{margin-right:22px}}
 
-.alt{background:var(--surface);border-block:1px solid var(--line)}
-.reviews{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-.review{border:1px solid var(--line);border-radius:var(--r);padding:20px;background:var(--bg)}
-.stars{color:var(--sun);letter-spacing:2px;font-size:15px}
-.review p{margin:10px 0 12px}
-.review small{color:var(--muted)}
-.sample{font-size:13px;color:var(--muted);margin-top:14px}
+.offers{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.offer-list{display:grid;grid-template-columns:1fr 1fr;gap:6px 56px}
+.offer{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:20px 0;border-bottom:1px dashed var(--line)}
+.offer h3{font-size:21px}
+.offer .price{font:700 20px var(--serif);color:var(--gold);white-space:nowrap}
+.offer p{grid-column:1/-1;font-size:15px}
+.offer .tag{display:inline-block;margin-left:8px;vertical-align:middle;font:700 10px var(--sans);letter-spacing:.14em;text-transform:uppercase;background:var(--gold-soft);color:#8a6420;padding:3px 8px;border-radius:2px}
+@media (max-width:760px){.offer-list{grid-template-columns:1fr}}
 
-.visit{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media (max-width:760px){.visit{grid-template-columns:1fr}}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;min-width:0}
-.panel h3{font-size:20px;margin-bottom:14px}
-.rows{display:grid;gap:14px}
-.row{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:start}
-.row span:first-child{color:var(--muted);font-size:14px;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
-.copy{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.copy button{font:600 13px var(--body);background:var(--chip);color:var(--lagoon);border:0;border-radius:999px;padding:5px 12px;cursor:pointer}
-.map{margin-top:18px;border-radius:12px;height:150px;background:
-  radial-gradient(circle at 62% 48%,var(--sun) 0 7px,transparent 8px),
-  radial-gradient(circle at 62% 48%,color-mix(in srgb,var(--sun) 35%,transparent) 0 22px,transparent 23px),
-  repeating-linear-gradient(35deg,transparent 0 26px,color-mix(in srgb,var(--lagoon) 18%,transparent) 26px 28px),
-  repeating-linear-gradient(-55deg,transparent 0 40px,color-mix(in srgb,var(--lagoon) 12%,transparent) 40px 42px),
-  var(--chip)}
-form{display:grid;gap:12px}
-label{font-size:14px;font-weight:600}
-input,textarea,select{width:100%;font:15px var(--body);padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
-textarea{min-height:96px;resize:vertical}
-.btn-lagoon{background:var(--lagoon);color:var(--on-lagoon);justify-self:start}
-.note{font-size:14px;color:var(--lagoon);font-weight:600}
+.stats{background:var(--night);color:#fff;padding-top:64px;padding-bottom:64px}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.stats b{display:block;font:700 44px var(--serif);color:#e8c98a}
+.stats span{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:#cfc7b8}
+@media (max-width:760px){.stats .wrap{grid-template-columns:1fr 1fr}}
 
-footer{background:var(--ink);color:var(--bg);font-size:14px}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:24px}
-footer a{color:var(--sun)}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:240px;gap:12px}
+.gallery figure{margin:0;position:relative;overflow:hidden;border-radius:4px;background:#d9d2c5}
+.gallery figure:first-child{grid-column:span 2;grid-row:span 2}
+.gallery img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.gallery figure:hover img{transform:scale(1.05)}
+.gallery figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 16px 12px;color:#fff;font-weight:700;font-size:14px;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+@media (max-width:760px){.gallery{grid-template-columns:1fr 1fr;grid-auto-rows:170px}}
 
-.wa{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:20;background:#25a35a;color:#fff;border-radius:999px;padding:12px 18px;font-weight:600;text-decoration:none;box-shadow:0 8px 24px rgb(0 0 0 / .25);display:flex;gap:8px;align-items:center}
-@media (prefers-reduced-motion:no-preference){.offer,.tile{transition:transform .2s}.offer:hover,.tile:hover{transform:translateY(-3px)}}
+.reviews{background:var(--gold-soft)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.rev{background:var(--white);padding:30px;border-radius:4px;box-shadow:0 10px 30px rgba(60,40,10,.08)}
+.rev .q{font:600 italic 19px/1.5 var(--serif);color:var(--ink);margin:14px 0 18px}
+.rev small{font-weight:700;color:var(--body)}
+.note{text-align:center;font-size:13px;margin-top:22px;color:#8a7f6e}
+@media (max-width:860px){.rev-grid{grid-template-columns:1fr}}
+
+.visit{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.card{background:var(--white);border:1px solid var(--line);border-radius:4px;padding:34px;min-width:0}
+.card h3{font-size:26px;margin-bottom:20px}
+.info{display:grid;gap:16px}
+.info div{display:grid;grid-template-columns:120px 1fr;gap:12px}
+.info dt{font:700 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding-top:3px}
+.info dd{margin:0;color:var(--ink)}
+.hours{display:grid;grid-template-columns:auto auto;justify-content:space-between;gap:4px 20px;font-variant-numeric:tabular-nums}
+form{display:grid;gap:14px}
+label{font-weight:700;font-size:14px;color:var(--ink)}
+input,select,textarea{width:100%;font:16px var(--sans);padding:12px 14px;border:1px solid var(--line);border-radius:4px;background:var(--paper);color:var(--ink)}
+textarea{min-height:100px;resize:vertical}
+.ok{color:var(--green);font-weight:700;font-size:15px}
+@media (max-width:860px){.visit{grid-template-columns:1fr}.info div{grid-template-columns:1fr}}
+
+/* get this website */
+.getit{background:linear-gradient(135deg,#141a1f,#23303a);color:#efe9df}
+.getit .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.getit h2{color:#fff;font-size:clamp(32px,4.4vw,50px);margin:12px 0 18px}
+.getit h2 em{color:#e8c98a}
+.steps{list-style:none;counter-reset:s;padding:0;margin:28px 0 0;display:grid;gap:16px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start}
+.steps li::before{content:counter(s);width:40px;height:40px;border-radius:50%;border:2px solid #e8c98a;color:#e8c98a;display:grid;place-items:center;font:700 18px var(--serif)}
+.steps b{color:#fff;display:block}
+.price-card{background:var(--white);color:var(--body);border-radius:6px;padding:36px;box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.price-card .amt{font:700 54px var(--serif);color:var(--ink);line-height:1}
+.price-card .amt small{font:700 16px var(--sans);color:var(--body)}
+.price-card ul{list-style:none;padding:0;margin:22px 0 26px;display:grid;gap:10px}
+.price-card li::before{content:"✓  ";color:var(--green);font-weight:700}
+.price-card .btn{width:100%}
+.price-card .sub{text-align:center;font-size:13px;margin-top:12px}
+@media (max-width:860px){.getit .wrap{grid-template-columns:1fr}}
+
+footer{background:#0e1215;color:#a9a294;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:26px;padding-bottom:26px}
+footer a{color:#e8c98a}
+
+.float-wa{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:40;width:58px;height:58px;border-radius:50%;background:var(--green);display:grid;place-items:center;box-shadow:0 10px 26px rgba(0,0,0,.3);text-decoration:none}
+.float-wa svg{width:30px;height:30px;fill:#fff}
+.mbar{display:none}
+@media (max-width:640px){
+  .mbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:39;gap:10px;align-items:center;justify-content:space-between;background:var(--night);color:#fff;font-size:14px;padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px))}
+  .mbar .btn{padding:10px 14px;font-size:13px}
+  .float-wa{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:70px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
-<div class="demo" role="region" aria-label="Demo controls">
+<div class="ribbon">
   <div class="wrap">
-    <span><b>Sample website.</b> See it for your type of business:</span>
-    <div class="switch" id="switch">
+    <span><b>Sample website by MizK Softwares.</b> Your business could look like this in 5 days.</span>
+    <div class="types" id="types">
+      <span>View as:</span>
       <button type="button" data-k="restaurant" aria-pressed="true">Restaurant</button>
       <button type="button" data-k="salon" aria-pressed="false">Salon &amp; Spa</button>
       <button type="button" data-k="gym" aria-pressed="false">Gym</button>
@@ -143,142 +183,223 @@ footer a{color:var(--sun)}
   </div>
 </div>
 
-<header class="site">
+<nav class="top">
   <div class="wrap">
-    <a class="brand" href="#top"><span class="mark" id="mark">🐚</span><span id="bname">Coral Tide Kitchen</span></a>
-    <nav class="links" aria-label="Sections">
-      <a href="#offers" id="navOffers">Menu</a><a href="#gallery">Gallery</a><a href="#reviews">Reviews</a><a href="#visit">Visit us</a>
-    </nav>
-    <a class="btn btn-sun" href="#contact">Contact us</a>
+    <a class="logo" href="#top"><span id="bname">Coral Tide Kitchen</span><small id="btag">Port Blair · Since 2012</small></a>
+    <div class="menu"><a href="#about">About</a><a href="#offers" id="navOffers">Menu</a><a href="#gallery">Gallery</a><a href="#reviews">Reviews</a><a href="#visit">Contact</a></div>
+    <a class="btn btn-gold" href="#visit" id="navCta">Book a table</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="kicker" id="hKicker">Seafood &amp; Indian cuisine · Sri Vijaya Puram</div>
+    <h1 id="hTitle">Fresh from the sea, <em>cooked with love.</em></h1>
+    <p id="hLead">Today's catch from the harbour, slow-cooked curries and a table with a view of the sea. Family-run since 2012.</p>
+    <div class="ctas">
+      <a class="btn btn-gold" href="#visit" id="hCta1">Book a table</a>
+      <a class="btn btn-line" href="#offers" id="hCta2">View menu</a>
+    </div>
+    <div class="badges">
+      <div><span class="stars">★★★★★</span> <span id="hRating">4.8 on Google</span></div>
+      <div id="hB2">Open daily till 11 pm</div>
+      <div id="hB3">Home delivery available</div>
+    </div>
   </div>
 </header>
 
-<main id="top">
-  <section class="hero">
-    <div class="wrap">
-      <div>
-        <div class="eyebrow" id="eyebrow">Seafood restaurant · Sri Vijaya Puram (Port Blair)</div>
-        <h1 id="headline">Today's catch, cooked the island way.</h1>
-        <p class="lead" id="lead">Fresh fish from Junglighat harbour every morning, Bengali and South Indian curries, and a rooftop table for the sunset over Ross Island.</p>
-        <div class="ctas">
-          <a class="btn btn-sun" href="#contact" id="cta1">Book a table</a>
-          <a class="btn btn-ghost" href="#offers" id="cta2">See the menu</a>
-        </div>
-        <div class="facts" id="facts"></div>
-      </div>
-      <aside class="card-hours" aria-label="Opening hours">
-        <div class="open" id="openNow">Open today</div>
-        <h3>Opening hours</h3>
-        <dl class="hours" id="hours"></dl>
-      </aside>
+<section id="about">
+  <div class="wrap about">
+    <div class="photo"><img id="aImg" alt="" loading="lazy"></div>
+    <div>
+      <div class="kicker">About us</div>
+      <h2 id="aTitle">A taste of the islands</h2>
+      <p id="aP1"></p>
+      <p id="aP2"></p>
+      <ul class="checks" id="aChecks"></ul>
     </div>
-    <svg class="waves" viewBox="0 0 1440 70" preserveAspectRatio="none" aria-hidden="true"><path d="M0 38 C 180 8 360 8 540 34 S 900 64 1080 36 S 1320 10 1440 30 V70 H0 Z"/></svg>
-  </section>
+  </div>
+</section>
 
-  <section class="band" id="offers">
-    <div class="wrap">
-      <div class="sec-head"><h2 id="offTitle">Popular dishes</h2><p id="offSub">Prices in ₹. Ask about today's catch, which changes with the boats.</p></div>
-      <div class="offer-grid" id="offerGrid"></div>
-    </div>
-  </section>
+<section class="offers" id="offers">
+  <div class="wrap">
+    <div class="head"><div class="kicker" id="oKicker">Our menu</div><h2 id="oTitle">House favourites</h2><div class="rule"></div><p id="oSub"></p></div>
+    <div class="offer-list" id="oList"></div>
+  </div>
+</section>
 
-  <section class="band" id="gallery" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head"><h2>Gallery</h2><p>Your own photos go here: the space, the team, your best work.</p></div>
-      <div class="gallery" id="galleryGrid"></div>
-    </div>
-  </section>
+<div class="stats">
+  <div class="wrap" id="stats"></div>
+</div>
 
-  <section class="band alt" id="reviews">
-    <div class="wrap">
-      <div class="sec-head"><h2>What customers say</h2><p id="ratingLine">4.8 ★ average on Google</p></div>
-      <div class="reviews" id="reviewGrid"></div>
-      <p class="sample">Sample reviews shown for the demo. The live site shows your real Google reviews.</p>
-    </div>
-  </section>
+<section id="gallery">
+  <div class="wrap">
+    <div class="head"><div class="kicker">Gallery</div><h2>Take a look inside</h2><div class="rule"></div></div>
+    <div class="gallery" id="gal"></div>
+  </div>
+</section>
 
-  <section class="band" id="visit">
-    <div class="wrap visit">
-      <div class="panel">
-        <h3>Visit us</h3>
-        <div class="rows">
-          <div class="row"><span>Address</span><span id="addr">Near Aberdeen Bazaar, Sri Vijaya Puram, Andaman &amp; Nicobar Islands 744101</span></div>
-          <div class="row"><span>Phone</span><span class="copy"><span id="phone">+91 00000 00000</span><button type="button" data-copy="phone">Copy</button></span></div>
-          <div class="row"><span>WhatsApp</span><span>Same number, replies within the hour</span></div>
-          <div class="row"><span>Find us</span><a href="https://www.google.com/maps/search/Aberdeen+Bazaar+Port+Blair" target="_blank" rel="noopener">Open in Google Maps ↗</a></div>
-        </div>
-        <div class="map" role="img" aria-label="Map placeholder"></div>
-      </div>
-      <div class="panel" id="contact">
-        <h3 id="formTitle">Book a table</h3>
-        <form id="f" novalidate>
-          <div><label for="nm">Your name</label><input id="nm" name="nm" autocomplete="name" placeholder="e.g. Priya Sharma"></div>
-          <div><label for="ph">Phone number</label><input id="ph" name="ph" inputmode="tel" placeholder="+91"></div>
-          <div><label for="what" id="whatLabel">Number of guests</label><select id="what"></select></div>
-          <div><label for="msg">Message</label><textarea id="msg" placeholder="Date, time, anything we should know"></textarea></div>
-          <button class="btn btn-lagoon" type="submit">Send request</button>
-          <p class="note" id="fnote" hidden>This is a demo, so nothing was sent. On your live site, requests arrive on your WhatsApp or email.</p>
-        </form>
-      </div>
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="head"><div class="kicker">Reviews</div><h2>What our customers say</h2><div class="rule"></div></div>
+    <div class="rev-grid" id="revs"></div>
+    <p class="note">Sample reviews for this demo. Your website shows your real Google reviews.</p>
+  </div>
+</section>
+
+<section id="visit" style="padding-top:0">
+  <div class="wrap visit">
+    <div class="card">
+      <h3>Visit us</h3>
+      <dl class="info" style="margin:0">
+        <div><dt>Address</dt><dd>Near Aberdeen Bazaar, Sri Vijaya Puram (Port Blair), Andaman &amp; Nicobar Islands 744101</dd></div>
+        <div><dt>Phone</dt><dd>+91 00000 00000 <small>(your number here)</small></dd></div>
+        <div><dt>Hours</dt><dd class="hours" id="hours"></dd></div>
+        <div><dt>Directions</dt><dd><a href="https://www.google.com/maps/search/Aberdeen+Bazaar+Port+Blair" target="_blank" rel="noopener">Open in Google Maps →</a></dd></div>
+      </dl>
     </div>
-  </section>
-</main>
+    <div class="card">
+      <h3 id="fTitle">Book a table</h3>
+      <form id="f">
+        <div><label for="nm">Your name</label><input id="nm" autocomplete="name" placeholder="e.g. Priya Sharma"></div>
+        <div><label for="ph">Phone</label><input id="ph" inputmode="tel" placeholder="+91"></div>
+        <div><label for="what" id="whatL">Guests</label><select id="what"></select></div>
+        <div><label for="msg">Message</label><textarea id="msg" placeholder="Date, time, any special request"></textarea></div>
+        <button class="btn btn-dark" type="submit">Send request</button>
+        <p class="ok" id="fOk" hidden>Demo only, nothing was sent. On your website, requests come straight to your WhatsApp.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="getit" id="get">
+  <div class="wrap">
+    <div>
+      <div class="kicker" style="color:#e8c98a">For business owners</div>
+      <h2>Like this website? <em>Get yours in 5 days.</em></h2>
+      <p>MizK Softwares builds websites like this for shops, restaurants, salons, gyms and homestays across the Andaman &amp; Nicobar Islands. You send the details, we do the rest.</p>
+      <ol class="steps">
+        <li><div><b>Send us your details on WhatsApp</b>Your logo, photos, prices and timings. No logo? We'll make a simple one.</div></li>
+        <li><div><b>We design your website</b>You see a preview in 3 days and tell us any changes.</div></li>
+        <li><div><b>Your website goes live</b>On Google and ready to share with customers, by day 5.</div></li>
+      </ol>
+    </div>
+    <div class="price-card">
+      <div class="kicker">Business website</div>
+      <div class="amt" style="margin-top:10px">₹3,300 <small>one-time</small></div>
+      <ul>
+        <li>Up to 5 pages, mobile-friendly</li>
+        <li>Your photos, menu or price list</li>
+        <li>WhatsApp booking button</li>
+        <li>Google Maps &amp; opening hours</li>
+        <li>Basic Google search setup (SEO)</li>
+        <li>Free changes for 30 days</li>
+      </ul>
+      <a class="btn btn-wa" id="orderBtn" target="_blank" rel="noopener" href="https://wa.me/919476058455">Order on WhatsApp</a>
+      <p class="sub">Pay 50% to start, 50% when you're happy.</p>
+    </div>
+  </div>
+</section>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 <span id="fname">Coral Tide Kitchen</span> · Sri Vijaya Puram (Port Blair)</span>
-    <span>Website design by MizK Softwares · Port Blair</span>
+    <span>© 2026 <span id="fName">Coral Tide Kitchen</span> · Sample website</span>
+    <span>Website by <a href="#get">MizK Softwares</a>, Port Blair</span>
   </div>
 </footer>
 
-<a class="wa" href="#contact" aria-label="Chat on WhatsApp">💬 WhatsApp us</a>
+<a class="float-wa" href="#visit" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.4.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg></a>
+
+<div class="mbar"><span>Want this website?</span><a class="btn btn-gold" href="#get">₹3,300 · See details</a></div>
 
 <script>
+const U=id=>`https://images.unsplash.com/${id}?auto=format&fit=crop&w=1400&q=70`;
 const D={
- restaurant:{name:"Coral Tide Kitchen",mark:"🐚",eyebrow:"Seafood restaurant · Sri Vijaya Puram (Port Blair)",head:"Today's catch, cooked the island way.",lead:"Fresh fish from Junglighat harbour every morning, Bengali and South Indian curries, and a rooftop table for the sunset over Ross Island.",cta1:"Book a table",cta2:"See the menu",nav:"Menu",offT:"Popular dishes",offS:"Prices in ₹. Ask about today's catch, which changes with the boats.",facts:["Dine-in","Takeaway","Rooftop seating","Pure veg options"],rating:"4.8 ★ average on Google",
-  hours:[["Mon–Sat","11:00 – 23:00"],["Sunday","12:00 – 23:00"]],formT:"Book a table",whatL:"Number of guests",what:["2 guests","3–4 guests","5–8 guests","Group of 9+"],
-  offers:[["Grilled red snapper","₹650","Whole fish, island masala, lemon rice","Chef's pick"],["Andaman crab curry","₹780","Mud crab in coconut and kokum gravy",""],["Prawn fry","₹520","Tiger prawns, curry leaf, garlic",""],["Fish thali","₹380","Rice, dal, two fish curries, papad","Lunch only"],["Paneer tikka","₹340","Charcoal-grilled, mint chutney","Veg"],["Tender coconut pudding","₹180","Made fresh every morning",""]],
-  tiles:["Rooftop at sunset","Today's catch","Crab curry","Prawn fry","Family table"],
-  reviews:[["Best fish in Port Blair. The snapper was perfect and the rooftop view is lovely.","Ananya, Kolkata"],["Came twice in one trip. Friendly staff and quick service even when busy.","Rahul, Bengaluru"],["Fresh, not oily, fair prices. Book ahead for sunset.","Meera, Chennai"]]},
- salon:{name:"Mangrove Salon & Spa",mark:"✂",eyebrow:"Unisex salon & spa · Sri Vijaya Puram (Port Blair)",head:"Look your best before the beach.",lead:"Haircuts, colour, bridal makeup and relaxing spa treatments by trained stylists, in a calm, air-conditioned studio.",cta1:"Book an appointment",cta2:"See services",nav:"Services",offT:"Services & prices",offS:"Prices in ₹. Bridal packages quoted on consultation.",facts:["Unisex","Air-conditioned","Bridal makeup","Walk-ins welcome"],rating:"4.7 ★ average on Google",
-  hours:[["Mon–Sat","10:00 – 20:30"],["Sunday","10:00 – 18:00"]],formT:"Book an appointment",whatL:"Service",what:["Haircut & styling","Hair colour","Facial / clean-up","Bridal makeup","Spa massage"],
-  offers:[["Haircut & styling","₹350","Wash, cut and blow-dry",""],["Global hair colour","₹1,800","Ammonia-free colour, any length","Popular"],["Classic facial","₹900","Deep cleanse, mask, massage",""],["Bridal makeup","₹12,000","HD makeup, hair, draping","Book early"],["Head & shoulder massage","₹600","30 minutes, warm oil",""],["Manicure & pedicure","₹1,100","Soak, shape, polish",""]],
-  tiles:["Styling chairs","Bridal look","Hair colour","Spa room","Nail bar"],
-  reviews:[["My bridal makeup lasted all day in the humidity. Thank you!","Divya, Port Blair"],["Clean salon, good haircut, and they listened to what I wanted.","Arjun, Port Blair"],["Relaxing massage after a long day of island hopping.","Sneha, Pune"]]},
- gym:{name:"IslandFit Gym",mark:"💪",eyebrow:"Gym & fitness studio · Sri Vijaya Puram (Port Blair)",head:"Get stronger, every single week.",lead:"Modern equipment, certified trainers and small group classes. Start with a free trial session and a personal fitness plan.",cta1:"Book a free trial",cta2:"See plans",nav:"Plans",offT:"Membership plans",offS:"Prices in ₹. Student and couple discounts available.",facts:["Certified trainers","Cardio & weights","Group classes","Parking"],rating:"4.8 ★ average on Google",
-  hours:[["Mon–Sat","05:30 – 22:00"],["Sunday","06:00 – 12:00"]],formT:"Book a free trial",whatL:"I'm interested in",what:["Monthly membership","Personal training","Weight loss program","Group classes"],
-  offers:[["Monthly","₹1,500","Full gym access, locker","Most flexible"],["Quarterly","₹4,000","Save ₹500, diet chart included",""],["Yearly","₹13,000","Best value, 2 free PT sessions","Best value"],["Personal training","₹5,000","12 one-to-one sessions",""],["Zumba & HIIT","₹1,200/mo","Evening group classes",""],["Day pass","₹200","For visitors to the islands",""]],
-  tiles:["Weights floor","Cardio zone","HIIT class","Trainers","Transformation"],
-  reviews:[["Lost 9 kg in 4 months with my trainer's plan. Very supportive team.","Karthik, Port Blair"],["Clean equipment and good morning batch timing.","Nisha, Port Blair"],["Day pass was easy while on holiday. Well-maintained gym.","Vikram, Delhi"]]},
- shop:{name:"Shell & Sand Handicrafts",mark:"🛍",eyebrow:"Handicraft & gift shop · Sri Vijaya Puram (Port Blair)",head:"Take a piece of the islands home.",lead:"Handmade coconut-shell crafts, padauk wood carvings, pearl jewellery and island spices. We pack safely for flights and can ship across India.",cta1:"Ask about an item",cta2:"See products",nav:"Products",offT:"Bestsellers",offS:"Prices in ₹. Bulk and corporate gift orders welcome.",facts:["Handmade","Gift wrapping","Ships across India","UPI & cards"],rating:"4.6 ★ average on Google",
-  hours:[["Mon–Sat","09:30 – 21:00"],["Sunday","10:00 – 20:00"]],formT:"Ask about an item",whatL:"Interested in",what:["Wood carvings","Jewellery","Coconut-shell crafts","Spices & tea","Bulk / corporate order"],
-  offers:[["Padauk wood elephant","₹1,450","Hand-carved, 6 inch","Bestseller"],["Pearl earrings","₹950","Freshwater pearls, silver hook",""],["Coconut-shell lamp","₹780","Handcut pattern, warm light",""],["Island spice box","₹520","Cinnamon, clove, pepper, nutmeg",""],["Shell wind chime","₹350","Natural shells, cotton cord",""],["Cane basket set","₹1,100","Set of 3, handwoven","Eco-friendly"]],
-  tiles:["Shop front","Wood carvings","Pearl jewellery","Spices","Gift packing"],
-  reviews:[["Beautiful carvings and they packed everything well for the flight.","Pooja, Hyderabad"],["Fair prices compared to other shops. Lovely pearl earrings.","Sana, Mumbai"],["Ordered spice boxes as wedding gifts. Delivered on time.","Rohit, Kolkata"]]}
+ restaurant:{name:"Coral Tide Kitchen",tag:"Port Blair · Since 2012",nav:"Menu",cta:"Book a table",cta2:"View menu",
+  kicker:"Seafood & Indian cuisine · Sri Vijaya Puram",title:'Fresh from the sea, <em>cooked with love.</em>',
+  lead:"Today's catch from the harbour, slow-cooked curries and a table with a view of the sea. Family-run since 2012.",
+  rating:"4.8 on Google",b2:"Open daily till 11 pm",b3:"Home delivery available",hero:"photo-1559339352-11d035aa65de",
+  about:"photo-1517248135467-4c7edcad34c4",aTitle:"A taste of the islands",
+  aP1:"Every morning our chef picks the best fish, crab and prawns straight from the boats at Junglighat. By lunch, they're on your plate.",
+  aP2:"From Bengali fish curry to tandoori platters, we cook the way island families have for generations, with a warm welcome for travellers too.",
+  checks:["Fresh catch daily","Family seating","Pure veg options","Air-conditioned hall"],
+  oKicker:"Our menu",oTitle:"House favourites",oSub:"Prices in ₹. Ask your server about today's special catch.",
+  offers:[["Grilled red snapper","₹650","Whole fish, island masala, lemon rice","Chef's pick"],["Andaman crab curry","₹780","Mud crab in a coconut and kokum gravy",""],["Tandoori prawns","₹560","Tiger prawns, smoky tandoor, mint chutney",""],["Bengali fish thali","₹380","Rice, dal, two fish curries, papad","Lunch"],["Paneer butter masala","₹320","Rich tomato gravy, butter naan","Veg"],["Coconut pudding","₹180","Made fresh every morning",""]],
+  stats:[["12+","Years serving"],["40k+","Happy guests"],["4.8★","Google rating"],["60+","Dishes"]],
+  gal:[["photo-1765100479761-2359e22fbe16","Seafood platter"],["photo-1569494315581-abddb8d41cfe","Butter garlic prawns"],["photo-1585937421612-70a008356fbe","Home-style curry"],["photo-1578935149228-66b184c83e69","Catch of the day"],["photo-1565557623262-b51c2513a641","Tandoor & naan"]],
+  revs:[["The crab curry alone is worth the trip to Port Blair. Fresh, spicy, perfect.","Ananya · Kolkata"],["Lovely family place. Quick service even on a busy Sunday evening.","Rahul · Bengaluru"],["Best fish thali we had in the Andamans, and very fair prices.","Meera · Chennai"]],
+  hours:[["Mon – Sat","11:00 – 23:00"],["Sunday","12:00 – 23:00"]],fTitle:"Book a table",whatL:"Guests",what:["2 guests","3 – 4 guests","5 – 8 guests","Party of 9+"]},
+ salon:{name:"Mangrove Salon & Spa",tag:"Port Blair · Unisex",nav:"Services",cta:"Book now",cta2:"View services",
+  kicker:"Hair · Beauty · Bridal · Spa",title:'Look good, <em>feel even better.</em>',
+  lead:"Haircuts, colour, bridal makeup and relaxing spa treatments by trained stylists, in a calm, air-conditioned studio.",
+  rating:"4.7 on Google",b2:"Open till 8:30 pm",b3:"Bridal packages",hero:"photo-1633681926022-84c23e8cb2d6",
+  about:"photo-1634449571010-02389ed0f9b0",aTitle:"Your style, our care",
+  aP1:"Our stylists are trained in the latest cuts and colour techniques, and we only use trusted professional products.",
+  aP2:"Whether it's a quick trim, a new look or your wedding day, we take time to listen and get it just right.",
+  checks:["Trained stylists","Hygienic tools","Bridal specialists","Men & women"],
+  oKicker:"Services",oTitle:"Services & prices",oSub:"Prices in ₹. Bridal packages quoted after a free consultation.",
+  offers:[["Haircut & styling","₹350","Wash, cut and blow-dry",""],["Global hair colour","₹1,800","Ammonia-free, any length","Popular"],["Keratin treatment","₹3,500","Smooth, frizz-free hair for months",""],["Bridal makeup","₹12,000","HD makeup, hairdo and draping","Book early"],["Classic facial","₹900","Deep cleanse, mask and massage",""],["Full body massage","₹1,600","60 minutes, aromatherapy oils",""]],
+  stats:[["8+","Years in Port Blair"],["15k+","Happy clients"],["4.7★","Google rating"],["300+","Brides styled"]],
+  gal:[["photo-1580618672591-eb180b1a973f","Styling & blow-dry"],["photo-1600334089648-b0d9d3028eb2","Spa room"],["photo-1560869713-7d0a29430803","Curls & waves"],["photo-1781450090585-1a511b7066d9","Our salon"],["photo-1503951914875-452162b0f3f1","Men's grooming"]],
+  revs:[["My bridal makeup stayed perfect all day, even in the island humidity!","Divya · Port Blair"],["Clean salon and a great haircut. They listened to what I wanted.","Arjun · Port Blair"],["The massage was the best way to end a day of island hopping.","Sneha · Pune"]],
+  hours:[["Mon – Sat","10:00 – 20:30"],["Sunday","10:00 – 18:00"]],fTitle:"Book an appointment",whatL:"Service",what:["Haircut & styling","Hair colour","Facial","Bridal makeup","Spa massage"]},
+ gym:{name:"IslandFit Gym",tag:"Port Blair · Fitness Club",nav:"Plans",cta:"Free trial",cta2:"View plans",
+  kicker:"Gym · Personal training · Group classes",title:'Stronger every week. <em>Start today.</em>',
+  lead:"Modern equipment, certified trainers and small group classes. Your first session is free, with a personal fitness plan.",
+  rating:"4.8 on Google",b2:"Open from 5:30 am",b3:"Free first session",hero:"photo-1758448756350-3d0eec02ba37",
+  about:"photo-1758875570600-8daf8d2f05f3",aTitle:"Train smarter with experts",
+  aP1:"Whether you want to lose weight, build muscle or just feel fitter, our certified trainers build a plan around your goals.",
+  aP2:"Spacious floor, clean equipment and a friendly community. Morning and evening batches to suit your day.",
+  checks:["Certified trainers","Diet guidance","Ladies batch","Free parking"],
+  oKicker:"Membership",oTitle:"Plans & prices",oSub:"Prices in ₹. Student and couple discounts available.",
+  offers:[["Monthly","₹1,500","Full gym access and locker",""],["Quarterly","₹4,000","Save ₹500, diet chart included","Popular"],["Yearly","₹13,000","2 free personal training sessions","Best value"],["Personal training","₹5,000","12 one-to-one sessions",""],["Zumba & HIIT","₹1,200 / mo","Evening group classes",""],["Day pass","₹200","For visitors to the islands",""]],
+  stats:[["6+","Years running"],["1,200+","Members trained"],["4.8★","Google rating"],["5","Certified trainers"]],
+  gal:[["photo-1517836357463-d25dfeac3438","Strength floor"],["photo-1541534741688-6078c6bfb5c5","Weight training"],["photo-1761971976282-b2bb051a5474","Cardio zone"],["photo-1544033527-b192daee1f5b","Free weights"],["photo-1554284126-aa88f22d8b74","Group sessions"]],
+  revs:[["Lost 9 kg in 4 months with my trainer's plan. Very supportive team.","Karthik · Port Blair"],["Clean equipment and the morning batch timing is perfect for me.","Nisha · Port Blair"],["Took a day pass on holiday. Well kept gym, friendly staff.","Vikram · Delhi"]],
+  hours:[["Mon – Sat","05:30 – 22:00"],["Sunday","06:00 – 12:00"]],fTitle:"Book your free trial",whatL:"I'm interested in",what:["Monthly membership","Personal training","Weight loss","Group classes"]},
+ shop:{name:"Shell & Sand Crafts",tag:"Port Blair · Handicrafts & Gifts",nav:"Products",cta:"Enquire now",cta2:"View products",
+  kicker:"Handicrafts · Pearls · Island spices",title:'Take a piece of <em>the islands home.</em>',
+  lead:"Handmade wood carvings, shell crafts, pearl jewellery and island spices. Safely packed for flights, shipped across India.",
+  rating:"4.6 on Google",b2:"Open daily till 9 pm",b3:"Ships across India",hero:"photo-1776336531045-b6d5986f4495",
+  about:"photo-1757400559844-109a04cd4dbe",aTitle:"Made by island hands",
+  aP1:"Every piece in our shop is handmade by local artisans, from padauk wood elephants to coconut-shell lamps.",
+  aP2:"We pack carefully for your flight home, and we can ship gifts anywhere in India.",
+  checks:["100% handmade","Gift wrapping","UPI & cards","Bulk orders"],
+  oKicker:"Bestsellers",oTitle:"Popular products",oSub:"Prices in ₹. Corporate and wedding gift orders welcome.",
+  offers:[["Padauk wood elephant","₹1,450","Hand-carved, 6 inch","Bestseller"],["Pearl earrings","₹950","Freshwater pearls, silver hooks",""],["Coconut-shell lamp","₹780","Hand-cut pattern, warm light",""],["Island spice box","₹520","Cinnamon, clove, pepper and nutmeg",""],["Shell wind chime","₹350","Natural shells on cotton cord",""],["Cane basket set","₹1,100","Set of 3, handwoven","Eco"]],
+  stats:[["15+","Years in business"],["25k+","Happy customers"],["4.6★","Google rating"],["500+","Handmade items"]],
+  gal:[["photo-1776336531062-096ac4833dec","Beads & carvings"],["photo-1623303179820-de8ec58b03dc","Pearl earrings"],["photo-1525289722380-f5bf1653d504","Island spices"],["photo-1620619767323-b95a89183081","Beaded necklaces"],["photo-1786468539077-c4687cbc16a0","Wooden carvings"]],
+  revs:[["Beautiful carvings, and they packed everything perfectly for the flight.","Pooja · Hyderabad"],["Fair prices compared to other shops. Lovely pearl earrings.","Sana · Mumbai"],["Ordered spice boxes as wedding gifts. Delivered on time.","Rohit · Kolkata"]],
+  hours:[["Mon – Sat","09:30 – 21:00"],["Sunday","10:00 – 20:00"]],fTitle:"Ask about a product",whatL:"Interested in",what:["Wood carvings","Pearl jewellery","Shell crafts","Spices","Bulk / gift order"]}
 };
-const shades=[["#0e7c74","#0a4d4f"],["#f2b43c","#c9781f"],["#2b6f9e","#163f61"],["#5c9e6e","#2f6243"],["#d4615a","#8e3836"]];
+const LABEL={restaurant:"restaurant",salon:"salon",gym:"gym",shop:"shop"};
 const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function render(k){
   const d=D[k]||D.restaurant;
-  document.querySelectorAll('#switch button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k===k));
-  $('bname').textContent=d.name;$('fname').textContent=d.name;$('mark').textContent=d.mark;
-  $('eyebrow').textContent=d.eyebrow;$('headline').textContent=d.head;$('lead').textContent=d.lead;
-  $('cta1').textContent=d.cta1;$('cta2').textContent=d.cta2;$('navOffers').textContent=d.nav;
-  $('offTitle').textContent=d.offT;$('offSub').textContent=d.offS;$('ratingLine').textContent=d.rating;
-  $('formTitle').textContent=d.formT;$('whatLabel').textContent=d.whatL;
-  $('facts').innerHTML=d.facts.map(f=>`<span class="fact">${f}</span>`).join('');
-  $('hours').innerHTML=d.hours.map(h=>`<dt>${h[0]}</dt><dd>${h[1]}</dd>`).join('');
-  $('offerGrid').innerHTML=d.offers.map(o=>`<article class="offer"><div class="top"><h3>${o[0]}</h3><span class="price">${o[1]}</span></div><p>${o[2]}</p>${o[3]?`<span class="tag">${o[3]}</span>`:''}</article>`).join('');
-  $('galleryGrid').innerHTML=d.tiles.map((t,i)=>`<div class="tile${i===0?' big':''}" style="background:linear-gradient(135deg,${shades[i][0]},${shades[i][1]})">${t}</div>`).join('');
-  $('reviewGrid').innerHTML=d.reviews.map(r=>`<figure class="review" style="margin:0"><div class="stars" aria-label="5 stars">★★★★★</div><p>${r[0]}</p><small>${r[1]}</small></figure>`).join('');
-  $('what').innerHTML=d.what.map(w=>`<option>${w}</option>`).join('');
-  $('fnote').hidden=true;
+  document.querySelectorAll('#types button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.k===k)));
+  $('bname').textContent=d.name;$('fName').textContent=d.name;$('btag').textContent=d.tag;
+  $('navOffers').textContent=d.nav;$('navCta').textContent=d.cta;$('hCta1').textContent=d.cta;$('hCta2').textContent=d.cta2;
+  $('hKicker').textContent=d.kicker;$('hTitle').innerHTML=d.title;$('hLead').textContent=d.lead;
+  $('hRating').textContent=d.rating;$('hB2').textContent=d.b2;$('hB3').textContent=d.b3;
+  document.querySelector('.hero').style.backgroundImage=`url("${U(d.hero)}")`;
+  $('aImg').src=U(d.about);$('aImg').alt=d.aTitle;
+  $('aTitle').textContent=d.aTitle;$('aP1').textContent=d.aP1;$('aP2').textContent=d.aP2;
+  $('aChecks').innerHTML=d.checks.map(c=>`<li>${esc(c)}</li>`).join('');
+  $('oKicker').textContent=d.oKicker;$('oTitle').textContent=d.oTitle;$('oSub').textContent=d.oSub;
+  $('oList').innerHTML=d.offers.map(o=>`<div class="offer"><h3>${esc(o[0])}${o[3]?`<span class="tag">${esc(o[3])}</span>`:''}</h3><span class="price">${esc(o[1])}</span><p>${esc(o[2])}</p></div>`).join('');
+  $('stats').innerHTML=d.stats.map(s=>`<div><b>${esc(s[0])}</b><span>${esc(s[1])}</span></div>`).join('');
+  $('gal').innerHTML=d.gal.map(g=>`<figure><img src="${U(g[0])}" alt="${esc(g[1])}" loading="lazy"><figcaption>${esc(g[1])}</figcaption></figure>`).join('');
+  $('revs').innerHTML=d.revs.map(r=>`<div class="rev"><div class="stars">★★★★★</div><p class="q">“${esc(r[0])}”</p><small>${esc(r[1])}</small></div>`).join('');
+  $('hours').innerHTML=d.hours.map(h=>`<span>${esc(h[0])}</span><span>${esc(h[1])}</span>`).join('');
+  $('fTitle').textContent=d.fTitle;$('whatL').textContent=d.whatL;
+  $('what').innerHTML=d.what.map(w=>`<option>${esc(w)}</option>`).join('');
+  $('fOk').hidden=true;
+  $('orderBtn').href='https://wa.me/919476058455?text='+encodeURIComponent(`Hi MizK Softwares, I saw your sample website and I want a website like this for my ${LABEL[k]} business.`);
 }
-document.getElementById('switch').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;render(b.dataset.k);try{history.replaceState(null,'','#'+b.dataset.k)}catch(_){} });
-document.querySelectorAll('[data-copy]').forEach(b=>b.addEventListener('click',()=>{const t=$(b.dataset.copy).textContent;navigator.clipboard?.writeText(t).then(()=>{b.textContent='Copied'},()=>{getSelection().selectAllChildren($(b.dataset.copy))}).catch(()=>{});}));
-$('f').addEventListener('submit',e=>{e.preventDefault();$('fnote').hidden=false;});
+$('types').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;render(b.dataset.k);try{history.replaceState(null,'','#'+b.dataset.k)}catch(_){}});
+$('f').addEventListener('submit',e=>{e.preventDefault();$('fOk').hidden=false;});
 const start=(location.hash||'').slice(1);render(D[start]?start:'restaurant');
 </script>
-
 </body>
 </html>
