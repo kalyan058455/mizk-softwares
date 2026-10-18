@@ -179,6 +179,7 @@ footer a{color:#e8c98a}
       <button type="button" data-k="salon" aria-pressed="false">Salon &amp; Spa</button>
       <button type="button" data-k="gym" aria-pressed="false">Gym</button>
       <button type="button" data-k="shop" aria-pressed="false">Shop</button>
+      <button type="button" data-k="clinic" aria-pressed="false">Clinic</button>
     </div>
   </div>
 </div>
@@ -277,7 +278,7 @@ footer a{color:#e8c98a}
     <div>
       <div class="kicker" style="color:#e8c98a">For business owners</div>
       <h2>Like this website? <em>Get yours in 5 days.</em></h2>
-      <p>MizK Softwares builds websites like this for shops, restaurants, salons, gyms and homestays across the Andaman &amp; Nicobar Islands. You send the details, we do the rest.</p>
+      <p>MizK Softwares builds websites like this for shops, restaurants, salons, gyms, clinics and homestays across the Andaman &amp; Nicobar Islands. You send the details, we do the rest.</p>
       <ol class="steps">
         <li><div><b>Send us your details on WhatsApp</b>Your logo, photos, prices and timings. No logo? We'll make a simple one.</div></li>
         <li><div><b>We design your website</b>You see a preview in 3 days and tell us any changes.</div></li>
@@ -370,9 +371,23 @@ const D={
   stats:[["15+","Years in business"],["25k+","Happy customers"],["4.6★","Google rating"],["500+","Handmade items"]],
   gal:[["photo-1776336531062-096ac4833dec","Beads & carvings"],["photo-1623303179820-de8ec58b03dc","Pearl earrings"],["photo-1525289722380-f5bf1653d504","Island spices"],["photo-1620619767323-b95a89183081","Beaded necklaces"],["photo-1786468539077-c4687cbc16a0","Wooden carvings"]],
   revs:[["Beautiful carvings, and they packed everything perfectly for the flight.","Pooja · Hyderabad"],["Fair prices compared to other shops. Lovely pearl earrings.","Sana · Mumbai"],["Ordered spice boxes as wedding gifts. Delivered on time.","Rohit · Kolkata"]],
-  hours:[["Mon – Sat","09:30 – 21:00"],["Sunday","10:00 – 20:00"]],fTitle:"Ask about a product",whatL:"Interested in",what:["Wood carvings","Pearl jewellery","Shell crafts","Spices","Bulk / gift order"]}
+  hours:[["Mon – Sat","09:30 – 21:00"],["Sunday","10:00 – 20:00"]],fTitle:"Ask about a product",whatL:"Interested in",what:["Wood carvings","Pearl jewellery","Shell crafts","Spices","Bulk / gift order"]},
+ clinic:{name:"Island Care Clinic",tag:"Port Blair · Multispeciality & Dental",nav:"Services",cta:"Book appointment",cta2:"View services",
+  kicker:"General medicine · Dental · Lab tests",title:'Caring for island families, <em>every day.</em>',
+  lead:"Experienced doctors, a modern dental unit and an in-house lab, all under one roof. Book your visit on WhatsApp and skip the waiting.",
+  rating:"4.8 on Google",b2:"Open 6 days a week",b3:"Home sample collection",hero:"photo-1762625570087-6d98fca29531",
+  about:"photo-1666214278797-b2cc1b12be76",aTitle:"Care you can trust",
+  aP1:"Our doctors take the time to listen, explain clearly and treat you like family. Clean, calm and easy to reach in the heart of the city.",
+  aP2:"From fever and check-ups to dental care and blood tests, most of what your family needs is available in one visit.",
+  checks:["Experienced doctors","Clean & hygienic","Online reports","Ample parking"],
+  oKicker:"Services",oTitle:"Services & fees",oSub:"Fees in ₹. Final charges may vary after consultation.",
+  offers:[["General consultation","₹300","Fever, BP, sugar, general check-up",""],["Specialist consultation","₹500","By appointment",""],["Dental check-up & cleaning","₹800","Scaling and polishing","Popular"],["Root canal treatment","from ₹3,500","Single-sitting options available",""],["Full body check-up","₹1,999","60+ tests, reports on WhatsApp","Package"],["Home sample collection","₹150","Within city limits",""]],
+  stats:[["10+","Years of care"],["30k+","Patients treated"],["4.8★","Google rating"],["6","Days a week"]],
+  gal:[["photo-1758691462123-8a17ae95d203","Consultation"],["photo-1606811971618-4486d14f3f99","Dental care"],["photo-1598256989800-fe5f95da9787","Dental unit"],["photo-1579165466949-3180a3d056d5","In-house lab"],["photo-1588776814546-1ffcf47267a5","Digital X-ray"]],
+  revs:[["The doctor explained everything patiently. Got my reports on WhatsApp the same evening.","Lakshmi · Port Blair"],["Painless root canal and very clean clinic. Highly recommend the dental team.","Imran · Port Blair"],["Home sample collection for my parents was on time and hassle-free.","Suresh · Port Blair"]],
+  hours:[["Mon – Sat","09:00 – 13:00, 17:00 – 21:00"],["Sunday","Closed"]],fTitle:"Book an appointment",whatL:"Department",what:["General medicine","Dental","Lab test / check-up","Home sample collection"]}
 };
-const LABEL={restaurant:"restaurant",salon:"salon",gym:"gym",shop:"shop"};
+const LABEL={restaurant:"restaurant",salon:"salon",gym:"gym",shop:"shop",clinic:"clinic"};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 function render(k){
