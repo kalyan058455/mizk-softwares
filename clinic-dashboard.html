@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coralline Health · Staff Dashboard (Sample)</title>
+<meta name="description" content="Sample staff dashboard by MizK Softwares: bookings, home collection, collectors, payments and reports.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Dashboard: left sidebar, top bar, KPI row, bookings table, collection board, revenue chart + collector load */
+:root{
+  --bg:#eef2f7; --card:#fff; --ink:#0f2236; --muted:#5b6b7d; --line:#dfe6ef; --side:#0f2236;
+  --blue:#0b5cab; --blue-soft:#e6f0fb; --mint:#13a37f; --mint-soft:#e3f6f0; --amber:#b7790a; --amber-soft:#fdf3df;
+  --violet:#6a4bc4; --violet-soft:#efeafc; --red:#c2413b; --red-soft:#fbe9e8;
+  --f:"Manrope","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--f)}
+h1,h2,h3{margin:0;line-height:1.2}
+button,select,input{font-family:inherit}
+:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.app{display:grid;grid-template-columns:230px 1fr;min-height:100vh}
+aside.side{background:var(--side);color:#c9d6e3;padding:20px 14px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:6px}
+.brand{display:flex;gap:10px;align-items:center;padding:4px 8px 18px;color:#fff;text-decoration:none}
+.brand .mk{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--blue),var(--mint));display:grid;place-items:center;font-weight:800;font-size:18px}
+.brand b{display:block;font-size:16px}.brand small{font-size:11.5px;color:#8fa3b8}
+.side a.nav{color:#c9d6e3;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:600;font-size:14.5px}
+.side a.nav:hover,.side a.nav.on{background:rgba(255,255,255,.08);color:#fff}
+.side .sp{flex:1}
+.side .who{font-size:13px;padding:10px 12px;border-top:1px solid rgba(255,255,255,.1)}
+.main{min-width:0;padding:20px max(18px,env(safe-area-inset-right,0px)) 40px max(18px,env(safe-area-inset-left,0px))}
+.top{display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;margin-bottom:18px}
+.top h1{font-size:24px;font-weight:800}
+.top p{color:var(--muted);font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:10px;padding:9px 14px;font-weight:700;font-size:14px;cursor:pointer;text-decoration:none}
+.b-blue{background:var(--blue);color:#fff}.b-ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}.b-mint{background:var(--mint);color:#fff}
+.btn.sm{padding:6px 10px;font-size:12.5px;border-radius:8px}
+.demo-note{background:var(--amber-soft);color:#7a5206;border-radius:10px;padding:9px 12px;font-size:13.5px;font-weight:600;margin-bottom:16px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+.kpi{background:var(--card);border-radius:14px;padding:16px 18px;border:1px solid var(--line)}
+.kpi span{font-size:13px;color:var(--muted);font-weight:600}
+.kpi b{display:block;font-size:28px;font-weight:800;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi small{font-size:12.5px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0;margin-bottom:18px}
+.ch{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin-bottom:14px}
+.ch h2{font-size:17px;font-weight:800}
+.filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.filters button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-weight:700;font-size:13px;color:var(--muted);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.filters input{border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:13.5px;min-width:0;width:190px}
+.tbl{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:880px}
+th{text-align:left;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tr:hover td{background:#f8fafd}
+td .sub{display:block;color:var(--muted);font-size:12.5px}
+td select{border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:13px;background:#fff}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.s-booked{background:var(--blue-soft);color:var(--blue)}.s-assigned{background:var(--violet-soft);color:var(--violet)}.s-collected{background:var(--amber-soft);color:var(--amber)}.s-processing{background:#e8eef5;color:#3e5873}.s-ready{background:var(--mint-soft);color:var(--mint)}
+.paid{color:var(--mint);font-weight:800}.unpaid{color:var(--red);font-weight:800}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.empty{color:var(--muted);text-align:center;padding:26px}
+.board{display:grid;grid-template-columns:repeat(5,minmax(170px,1fr));gap:12px;overflow-x:auto}
+.col{background:var(--bg);border-radius:12px;padding:10px;min-height:120px}
+.col h3{font-size:13px;font-weight:800;display:flex;justify-content:space-between;margin:2px 4px 10px}
+.bc{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px;font-size:13px}
+.bc b{display:block;font-size:13.5px}
+.bc span{color:var(--muted)}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+.two .card{margin-bottom:0}
+.legend{display:flex;gap:14px;font-size:12.5px;color:var(--muted);font-weight:600}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+svg text{font-family:var(--f)}
+.load{display:grid;gap:12px}
+.load div{display:grid;grid-template-columns:80px 1fr 40px;gap:10px;align-items:center;font-size:14px;font-weight:700}
+.meter{height:10px;border-radius:5px;background:var(--bg);overflow:hidden}
+.meter i{display:block;height:100%;background:var(--violet);border-radius:5px}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:10px;font-weight:700;font-size:14px;z-index:40}
+@media (max-width:1100px){.kpis{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.two .card{margin-bottom:18px}}
+@media (max-width:820px){.app{grid-template-columns:1fr}aside.side{position:static;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;padding:12px max(14px,env(safe-area-inset-left,0px))}.brand{padding:0 8px 0 0}.side .sp,.side .who{display:none}.side a.nav{padding:8px 10px;font-size:13.5px}}
+@media (max-width:480px){.kpis{grid-template-columns:1fr 1fr}.kpi b{font-size:22px}.filters input{width:100%}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="clinic.html"><span class="mk">+</span><span><b>Coralline Health</b><small>Staff dashboard</small></span></a>
+    <a class="nav on" href="#overview">▦ Overview</a>
+    <a class="nav" href="#bookings">☰ Bookings</a>
+    <a class="nav" href="#board">⇄ Home collection</a>
+    <a class="nav" href="#money">₹ Payments</a>
+    <a class="nav" href="clinic.html">↗ Patient website</a>
+    <div class="sp"></div>
+    <div class="who">Signed in as <b style="color:#fff">Front desk</b><br>Sample · MizK Softwares</div>
+  </aside>
+
+  <main class="main" id="overview">
+    <div class="top">
+      <div><h1>Good day, front desk</h1><p id="today"></p></div>
+      <div class="tools">
+        <a class="btn b-ghost" href="clinic.html#book">+ New booking</a>
+        <button class="btn b-ghost" type="button" id="reset">Reset demo data</button>
+      </div>
+    </div>
+    <div class="demo-note">Sample dashboard. Bookings you make on the patient website appear here on this device. Try assigning a collector and moving a booking forward.</div>
+
+    <div class="kpis" id="kpis"></div>
+
+    <div class="card" id="bookings">
+      <div class="ch"><h2>Bookings</h2>
+        <div class="filters" id="filters">
+          <button type="button" data-f="today" aria-pressed="true">Today</button>
+          <button type="button" data-f="upcoming" aria-pressed="false">Upcoming</button>
+          <button type="button" data-f="all" aria-pressed="false">All</button>
+          <select id="stF" aria-label="Filter by status"><option value="">All statuses</option><option value="booked">Booked</option><option value="assigned">Collector assigned</option><option value="collected">Sample collected</option><option value="processing">Testing</option><option value="ready">Report ready</option></select>
+          <input id="srch" type="search" placeholder="Search name, ID, area" aria-label="Search bookings">
+        </div>
+      </div>
+      <div class="tbl"><table>
+        <thead><tr><th>Booking</th><th>Patient</th><th>Tests</th><th>Slot &amp; area</th><th>Collector</th><th>Payment</th><th>Status</th><th>Action</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table></div>
+    </div>
+
+    <div class="card" id="board">
+      <div class="ch"><h2>Home collection board · today</h2><span class="muted" style="color:var(--muted);font-size:13px">Every sample from booking to report</span></div>
+      <div class="board" id="cols"></div>
+    </div>
+
+    <div class="two" id="money">
+      <div class="card">
+        <div class="ch"><h2>Revenue · last 7 days</h2><div class="legend"><span><i style="background:var(--blue)"></i>Online</span><span><i style="background:var(--mint)"></i>Cash / UPI at door</span></div></div>
+        <div id="chart"></div>
+      </div>
+      <div class="card">
+        <div class="ch"><h2>Collectors today</h2></div>
+        <div class="load" id="load"></div>
+        <p style="color:var(--muted);font-size:13px;margin-top:14px">Visits assigned for today's slots.</p>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const KEY='coralline_demo_v1';
+const CATALOG={p1:['Full Body Check-up',1999],p2:['Basic Health Check',999],p3:['Diabetes Care',1299],p4:['Senior Citizen Package',2499],b1:['Complete Blood Count (CBC)',300],b2:['Thyroid Profile (T3, T4, TSH)',550],b3:['HbA1c',450],b4:['Lipid Profile',500],b5:['Vitamin D (25-OH)',1200],b6:['Liver Function Test',600],f1:['Dengue NS1 Antigen',600],f2:['Malaria Antigen',350],f3:['Fever Panel',1450]};
+const FEE=150,FREE_ABOVE=999;
+const COLLECTORS=['Ravi','Anita','Joseph'];
+const FLOW=['booked','assigned','collected','processing','ready'];
+const LABEL={booked:'Booked',assigned:'Collector assigned',collected:'Sample collected',processing:'Testing',ready:'Report ready'};
+const NEXT={booked:'Assign collector',assigned:'Mark collected',collected:'Send to lab',processing:'Report ready',ready:'Sent ✓'};
+const ymd=d=>d.toISOString().slice(0,10);
+const addDays=n=>{const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+n);return d};
+function seed(){
+  const mk=(no,name,phone,area,day,slot,ids,pay,status,collector)=>{const items=ids.map(i=>({id:i,n:CATALOG[i][0],p:CATALOG[i][1]}));const sub=items.reduce((s,i)=>s+i.p,0);return {id:'CH-'+no,name,phone,area,addr:'House no. '+(10+no%40)+', '+area,date:ymd(addDays(day)),slot,items,fee:sub>=FREE_ABOVE?0:FEE,payMode:pay,paid:pay==='online'||status==='ready'||status==='processing',status,collector,created:Date.now()}};
+  const s=[
+   mk(1040,'Ramesh Kumar','98000 11111','Junglighat',-2,'07:00–08:00',['p1'],'online','ready','Ravi'),
+   mk(1041,'Fatima Begum','98000 22222','Haddo',-1,'06:00–07:00',['p3'],'cash','ready','Anita'),
+   mk(1042,'Priya Nair','98000 33333','Delanipur',0,'07:00–08:00',['b2','b5'],'online','processing','Anita'),
+   mk(1043,'John Ekka','98000 44444','Garacharma',0,'08:00–09:00',['f3'],'cash','collected','Joseph'),
+   mk(1044,'Sunita Das','98000 55555','Dollygunj',0,'09:00–10:00',['p4'],'online','assigned','Ravi'),
+   mk(1045,'Abdul Rahim','98000 66666','Phoenix Bay',0,'10:00–11:00',['b1','b4'],'cash','assigned','Joseph'),
+   mk(1046,'Meena Sharma','98000 77777','Bathubasti',0,'16:00–17:00',['p2'],'online','booked',''),
+   mk(1047,'Arjun Rao','98000 88888','Aberdeen Bazaar',0,'17:00–18:00',['b3'],'cash','booked',''),
+   mk(1048,'Lakshmi Iyer','98000 99999','Prem Nagar',1,'06:00–07:00',['p1'],'online','booked',''),
+   mk(1049,'Vikas Singh','98001 12345','Shadipur',1,'07:00–08:00',['f1','b1'],'cash','booked','')
+  ];
+  /* past week history for the revenue chart (completed bookings) */
+  const names=['Kavya','Imran','Suresh','Deepa','Manoj','Rina','Thomas','Asha','Karan','Neha','Rafiq','Pooja'];const areas=['Haddo','Junglighat','Delanipur','Garacharma','Dollygunj','Bathubasti'];const pk=['p1','p2','p3','b1','b2','b5','f3','b4'];
+  let no=900;for(let d=-6;d<=-1;d++){const n=3+((d*7+11)%4+4)%4;for(let k=0;k<n;k++){no++;const ids=[pk[(no*3+k)%pk.length]];s.push(mk(no,names[(no+k)%names.length]+' '+['K.','S.','R.','M.'][k%4],'98002 '+String(10000+no).slice(-5),areas[(no+k)%areas.length],d,['07:00–08:00','08:00–09:00','16:00–17:00'][k%3],ids,(no%3===0)?'cash':'online','ready',COLLECTORS[no%3]))}}
+  return s;
+}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(s)&&s.length){if(!s.some(b=>+b.id.split('-')[1]<1000)){const extra=seed().filter(b=>+b.id.split('-')[1]<1000);s.push(...extra);save(s)}return s}}catch(e){}const s=seed();save(s);return s}
+function save(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
+const inr=n=>'₹'+Number(n).toLocaleString('en-IN');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $=id=>document.getElementById(id);
+const total=b=>b.items.reduce((s,i)=>s+i.p,0)+b.fee;
+const T=ymd(addDays(0));
+let view='today',stF='',q='';
+function toast(m){const t=$('toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,2200)}
+
+function render(){
+  const all=load();const today=all.filter(b=>b.date===T);
+  $('today').textContent=new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  const pend=today.filter(b=>b.status==='booked'||b.status==='assigned').length;
+  const unassigned=today.filter(b=>b.status==='booked').length;
+  const collected=today.filter(b=>b.paid).reduce((s,b)=>s+total(b),0);
+  const due=today.filter(b=>!b.paid).reduce((s,b)=>s+total(b),0);
+  const inLab=all.filter(b=>b.status==='collected'||b.status==='processing').length;
+  $('kpis').innerHTML=[
+   ["Today's bookings",today.length,`${all.filter(b=>b.date>T).length} upcoming`],
+   ['Pending home visits',pend,unassigned?`${unassigned} need a collector`:'All assigned'],
+   ['Collected today',inr(collected),`${inr(due)} still due`],
+   ['Samples in lab',inLab,`${all.filter(b=>b.status==='ready'&&b.date===T).length} reports sent today`]
+  ].map(k=>`<div class="kpi"><span>${k[0]}</span><b>${k[1]}</b><small>${k[2]}</small></div>`).join('');
+
+  let list=all.filter(b=>view==='all'?true:view==='today'?b.date===T:b.date>T);
+  if(stF)list=list.filter(b=>b.status===stF);
+  const qq=q.trim().toLowerCase();if(qq)list=list.filter(b=>(b.id+' '+b.name+' '+b.area+' '+b.phone).toLowerCase().includes(qq));
+  list.sort((a,b)=>(a.date+a.slot).localeCompare(b.date+b.slot));
+  if(view==='all')list.reverse();
+  $('rows').innerHTML=list.length?list.map(b=>`<tr>
+   <td><b>${esc(b.id)}</b><span class="sub">${b.payMode==='online'?'Online':'Pay at door'}</span></td>
+   <td>${esc(b.name)}<span class="sub">${esc(b.phone)}</span></td>
+   <td>${b.items.map(i=>esc(i.n)).join(', ')}<span class="sub">${b.items.length} item${b.items.length>1?'s':''}</span></td>
+   <td class="num">${new Date(b.date).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}, ${esc(b.slot)}<span class="sub">${esc(b.area)}</span></td>
+   <td><select data-col="${b.id}" aria-label="Collector for ${esc(b.id)}"${b.status==='ready'?' disabled':''}><option value="">— Assign —</option>${COLLECTORS.map(c=>`<option${c===b.collector?' selected':''}>${c}</option>`).join('')}</select></td>
+   <td class="num"><span class="${b.paid?'paid':'unpaid'}">${inr(total(b))}</span><span class="sub">${b.paid?'Paid':`<button type="button" class="btn b-ghost sm" data-pay="${b.id}">Mark paid</button>`}</span></td>
+   <td><span class="pill s-${b.status}">${LABEL[b.status]}</span></td>
+   <td>${b.status==='ready'?'<span style="color:var(--mint);font-weight:800">Sent ✓</span>':`<button type="button" class="btn ${b.status==='processing'?'b-mint':'b-blue'} sm" data-next="${b.id}">${NEXT[b.status]}</button>`}</td></tr>`).join(''):`<tr><td colspan="8" class="empty">No bookings match these filters.</td></tr>`;
+
+  $('cols').innerHTML=FLOW.map(st=>{const c=today.filter(b=>b.status===st);return `<div class="col"><h3><span class="pill s-${st}">${LABEL[st]}</span><span>${c.length}</span></h3>${c.map(b=>`<div class="bc"><b>${esc(b.id)} · ${esc(b.name)}</b><span>${esc(b.slot)} · ${esc(b.area)}</span><br><span>${b.collector?'👤 '+esc(b.collector):'No collector yet'}</span></div>`).join('')||'<p style="color:var(--muted);font-size:12.5px;margin:4px">Nothing here</p>'}</div>`}).join('');
+
+  /* chart */
+  const days=[-6,-5,-4,-3,-2,-1,0].map(n=>ymd(addDays(n)));
+  const data=days.map(d=>{const bs=all.filter(b=>b.date===d&&b.paid);return {d,on:bs.filter(b=>b.payMode==='online').reduce((s,b)=>s+total(b),0),cash:bs.filter(b=>b.payMode!=='online').reduce((s,b)=>s+total(b),0)}});
+  const max=Math.max(1000,...data.map(x=>x.on+x.cash));const step=max>12000?5000:max>6000?2000:1000;const top=Math.ceil(max/step)*step;
+  const W=600,H=240,L=54,B=28,TP=12,bw=(W-L-10)/7;const y=v=>H-B-(v/top)*(H-B-TP);
+  let g='';for(let v=0;v<=top;v+=step){g+=`<line x1="${L}" x2="${W-6}" y1="${y(v)}" y2="${y(v)}" stroke="#e6ebf2"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#5b6b7d">${v>=1000?(v/1000)+'k':v}</text>`}
+  data.forEach((x,i)=>{const cx=L+i*bw+bw*.2,w=bw*.6;const h1=(x.on/top)*(H-B-TP),h2=(x.cash/top)*(H-B-TP);const tot=x.on+x.cash;
+    g+=`<rect x="${cx}" y="${y(x.on)}" width="${w}" height="${h1}" fill="#0b5cab" rx="3"><title>Online ${inr(x.on)}</title></rect><rect x="${cx}" y="${y(x.on+x.cash)}" width="${w}" height="${h2}" fill="#13a37f" rx="3"><title>At door ${inr(x.cash)}</title></rect>`;
+    if(tot)g+=`<text x="${cx+w/2}" y="${y(tot)-6}" text-anchor="middle" font-size="11" font-weight="700" fill="#0f2236">${tot>=1000?(tot/1000).toFixed(1)+'k':tot}</text>`;
+    g+=`<text x="${cx+w/2}" y="${H-8}" text-anchor="middle" font-size="11.5" fill="#5b6b7d"${i===6?' font-weight="700"':''}>${i===6?'Today':new Date(x.d).toLocaleDateString('en-IN',{weekday:'short'})}</text>`});
+  const wk=data.reduce((s,x)=>s+x.on+x.cash,0);
+  $('chart').innerHTML=`<p style="margin:-6px 0 8px;font-weight:800;font-size:20px">${inr(wk)} <span style="font-size:13px;color:var(--muted);font-weight:600">collected this week</span></p><div style="overflow-x:auto"><svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:420px" role="img" aria-label="Revenue for the last 7 days">${g}</svg></div>`;
+
+  const ld=COLLECTORS.map(c=>[c,today.filter(b=>b.collector===c).length]);const mx=Math.max(4,...ld.map(x=>x[1]));
+  $('load').innerHTML=ld.map(x=>`<div><span>${x[0]}</span><span class="meter"><i style="width:${x[1]/mx*100}%"></i></span><span class="num">${x[1]}</span></div>`).join('');
+}
+
+document.addEventListener('change',e=>{const s=e.target.closest('[data-col]');if(!s)return;const all=load();const b=all.find(x=>x.id===s.dataset.col);b.collector=s.value;if(b.collector&&b.status==='booked')b.status='assigned';if(!b.collector&&b.status==='assigned')b.status='booked';save(all);render();toast(b.collector?`${b.id} assigned to ${b.collector}`:`${b.id} unassigned`)});
+document.addEventListener('click',e=>{
+  const n=e.target.closest('[data-next]');const p=e.target.closest('[data-pay]');const f=e.target.closest('#filters button');
+  if(f){view=f.dataset.f;document.querySelectorAll('#filters button').forEach(x=>x.setAttribute('aria-pressed',String(x===f)));render();return}
+  if(p){const all=load();const b=all.find(x=>x.id===p.dataset.pay);b.paid=true;save(all);render();toast(`${b.id} marked as paid`);return}
+  if(n){const all=load();const b=all.find(x=>x.id===n.dataset.next);
+    if(b.status==='booked'){if(!b.collector){const free=[...COLLECTORS].sort((a,c)=>all.filter(x=>x.date===b.date&&x.collector===a).length-all.filter(x=>x.date===b.date&&x.collector===c).length)[0];b.collector=free}b.status='assigned';toast(`${b.id} assigned to ${b.collector}`)}
+    else{const i=FLOW.indexOf(b.status);b.status=FLOW[Math.min(4,i+1)];if(b.status==='ready'){b.paid=true;toast(`Report for ${b.id} sent to ${b.name} on WhatsApp (demo)`)}else toast(`${b.id}: ${LABEL[b.status]}`)}
+    save(all);render()}
+});
+$('stF').onchange=e=>{stF=e.target.value;render()};
+$('srch').oninput=e=>{q=e.target.value;render()};
+$('reset').onclick=()=>{save(seed());render();toast('Demo data reset')};
+window.addEventListener('storage',e=>{if(e.key===KEY)render()});
+render();
+</script>
+</body>
+</html>

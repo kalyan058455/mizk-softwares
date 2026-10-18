@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coralline Health | Lab Tests & Home Collection, Port Blair (Sample)</title>
+<meta name="description" content="Sample clinic & diagnostics website by MizK Softwares: online test booking, home sample collection, online payment, report tracking and a staff dashboard.">
+<meta property="og:title" content="Book lab tests at home | Sample by MizK Softwares">
+<meta property="og:description" content="Online booking, home sample collection, online payment and live report tracking.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1579165466949-3180a3d056d5?auto=format&fit=crop&w=1200&h=630&q=70">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* App-like medical layout: demo bar, header, split hero with search + booking card, test catalogue, 4-step booking panel, live tracking timeline */
+:root{
+  --bg:#f4f7fb; --card:#ffffff; --ink:#0f2236; --muted:#5b6b7d; --line:#dfe6ef;
+  --blue:#0b5cab; --blue-d:#073f78; --blue-soft:#e6f0fb; --mint:#13a37f; --mint-soft:#e3f6f0;
+  --amber:#c98a12; --amber-soft:#fdf3df; --red:#c2413b;
+  --f:"Manrope", "Segoe UI", system-ui, sans-serif; --r:16px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--f)}
+h1,h2,h3,h4{margin:0;line-height:1.2;text-wrap:balance}
+p{margin:0}
+a{color:inherit}
+button{font-family:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:13px 20px;font:700 15px var(--f);cursor:pointer;text-decoration:none;transition:transform .12s, background .12s}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.b-blue{background:var(--blue);color:#fff}.b-blue:hover{background:var(--blue-d)}
+.b-mint{background:var(--mint);color:#fff}
+.b-ghost{background:var(--blue-soft);color:var(--blue)}
+.b-white{background:#fff;color:var(--blue)}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px}
+
+.demo{background:var(--ink);color:#d7e2ee;font-size:13.5px}
+.demo .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between;align-items:center;padding-top:9px;padding-bottom:9px}
+.demo a{color:#7fe0c4;font-weight:700}
+
+header{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand .mk{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--mint));display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px}
+.brand b{display:block;font-size:19px;font-weight:800;letter-spacing:-.01em}
+.brand small{display:block;color:var(--muted);font-size:12px;font-weight:600}
+nav.links{display:flex;gap:22px;font-weight:600;font-size:15px;color:var(--muted)}
+nav.links a{text-decoration:none}nav.links a:hover{color:var(--blue)}
+.hdr-actions{display:flex;gap:10px;align-items:center}
+.cartbtn{position:relative}
+.cartbtn span{position:absolute;top:-6px;right:-6px;background:var(--mint);color:#fff;font-size:11px;font-weight:800;min-width:20px;height:20px;border-radius:10px;display:grid;place-items:center;padding:0 5px}
+@media (max-width:900px){nav.links{display:none}}
+@media (max-width:520px){.hdr-actions .staff{display:none}}
+
+.hero{background:radial-gradient(1200px 400px at 85% -10%,#cfe6fb 0,transparent 60%),linear-gradient(180deg,#eef5fd,#f4f7fb)}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center;padding-top:56px;padding-bottom:56px}
+.hero h1{font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-.02em}
+.hero h1 span{color:var(--blue)}
+.hero p.lead{color:var(--muted);font-size:18px;margin:16px 0 24px;max-width:52ch}
+.search{display:flex;background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px;box-shadow:0 10px 30px rgba(11,92,171,.08);max-width:560px}
+.search input{flex:1;min-width:0;border:0;font:500 16px var(--f);padding:10px 12px;background:transparent;color:var(--ink)}
+.search input:focus{outline:none}
+.trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:22px;font-size:14px;font-weight:600;color:var(--muted)}
+.trust div{display:flex;align-items:center;gap:8px}
+.trust i{width:22px;height:22px;border-radius:50%;background:var(--mint-soft);color:var(--mint);display:grid;place-items:center;font-style:normal;font-size:12px}
+.hero-card{background:var(--card);border-radius:22px;overflow:hidden;box-shadow:0 24px 60px rgba(15,34,54,.14)}
+.hero-card .ph{height:220px;background:#cfdcea url("https://images.unsplash.com/photo-1579165466949-3180a3d056d5?auto=format&fit=crop&w=900&q=70") center/cover}
+.hero-card .bd{padding:22px}
+.hc-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.hc-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.hc-steps div{background:var(--bg);border-radius:12px;padding:10px;font-size:12.5px;font-weight:600;color:var(--muted);text-align:center}
+.hc-steps b{display:block;color:var(--ink);font-size:14px}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+
+section{padding-top:64px;padding-bottom:64px;scroll-margin-top:80px}
+.sh{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:12px;margin-bottom:24px}
+.sh h2{font-size:clamp(26px,3.4vw,36px);font-weight:800;letter-spacing:-.01em}
+.sh p{color:var(--muted)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px;color:var(--muted);cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.test{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.test .top{display:flex;justify-content:space-between;gap:10px}
+.test h3{font-size:17px;font-weight:800}
+.test p{color:var(--muted);font-size:14px}
+.test .meta{display:flex;gap:8px;flex-wrap:wrap}
+.m1{background:var(--blue-soft);color:var(--blue)}.m2{background:var(--mint-soft);color:var(--mint)}.m3{background:var(--amber-soft);color:var(--amber)}
+.test .foot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:6px}
+.price{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+.price s{font-size:14px;color:var(--muted);font-weight:600;margin-left:6px}
+.add{padding:9px 14px;font-size:14px}
+.add.added{background:var(--mint);color:#fff}
+.empty{color:var(--muted);padding:20px 0}
+
+.how{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.how-grid div{border-radius:var(--r);background:var(--bg);padding:22px}
+.how-grid .n{width:36px;height:36px;border-radius:10px;background:var(--blue);color:#fff;font-weight:800;display:grid;place-items:center;margin-bottom:12px}
+.how-grid h4{font-size:17px;margin-bottom:6px}
+.how-grid p{color:var(--muted);font-size:14.5px}
+@media (max-width:860px){.how-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.how-grid{grid-template-columns:1fr}}
+
+/* booking panel */
+.book{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
+@media (max-width:960px){.book{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;min-width:0}
+.stepper{display:flex;gap:6px;margin-bottom:22px;flex-wrap:wrap}
+.stepper div{flex:1;min-width:110px;font-size:13px;font-weight:700;color:var(--muted);border-top:4px solid var(--line);padding-top:8px}
+.stepper div.on{color:var(--blue);border-color:var(--blue)}
+.stepper div.done{color:var(--mint);border-color:var(--mint)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fgrid .full{grid-column:1/-1}
+@media (max-width:560px){.fgrid{grid-template-columns:1fr}}
+label{display:block;font-size:13.5px;font-weight:700;margin-bottom:6px}
+input,select,textarea{width:100%;font:500 15px var(--f);padding:12px 13px;border:1px solid var(--line);border-radius:11px;background:#fbfcfe;color:var(--ink)}
+textarea{min-height:80px;resize:vertical}
+.err{color:var(--red);font-size:13px;font-weight:600;margin-top:10px}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+.slots button,.days button{border:1px solid var(--line);background:#fff;border-radius:11px;padding:10px;font-weight:700;font-size:14px;cursor:pointer;color:var(--ink)}
+.slots button[aria-pressed="true"],.days button[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.slots button:disabled{opacity:.4;cursor:not-allowed;text-decoration:line-through}
+.days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px}
+.days button{min-width:84px;line-height:1.3}
+.days small{display:block;font-weight:600;font-size:12px;opacity:.8}
+.pay{display:grid;gap:10px}
+.pay label.opt{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;margin:0;font-weight:600}
+.pay label.opt:has(input:checked){border-color:var(--blue);background:var(--blue-soft)}
+.pay input{width:auto;margin-top:3px}
+.pay b{display:block}
+.pay span{color:var(--muted);font-size:13.5px;font-weight:500}
+.upi{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.upi em{font-style:normal;font-size:12px;font-weight:700;background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 8px;color:var(--muted)}
+.nav-btns{display:flex;justify-content:space-between;gap:10px;margin-top:22px}
+.summary h3{font-size:18px;font-weight:800;margin-bottom:12px}
+.li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line);font-size:14.5px}
+.li button{border:0;background:none;color:var(--red);font-weight:700;cursor:pointer;font-size:13px;padding:0 0 0 8px}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;padding-top:12px;font-variant-numeric:tabular-nums}
+.muted{color:var(--muted);font-size:13.5px}
+.ok-box{text-align:center;padding:10px 0}
+.ok-box .tick{width:64px;height:64px;border-radius:50%;background:var(--mint-soft);color:var(--mint);display:grid;place-items:center;font-size:32px;margin:0 auto 14px}
+.bid{display:inline-block;font:800 22px var(--f);letter-spacing:.06em;background:var(--bg);border:1px dashed var(--blue);border-radius:12px;padding:8px 16px;margin:12px 0}
+
+/* payment modal */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(15,34,54,.55);display:grid;place-items:center;padding:18px}
+.modal .box{background:#fff;border-radius:20px;max-width:380px;width:100%;padding:24px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.modal h3{font-size:18px}
+.qr{width:170px;height:170px;margin:16px auto;border-radius:12px;background:
+  conic-gradient(from 90deg at 18% 18%,var(--ink) 25%,transparent 0) 0 0/34px 34px,
+  repeating-linear-gradient(90deg,var(--ink) 0 6px,transparent 6px 13px),
+  repeating-linear-gradient(0deg,#fff 0 7px,transparent 7px 12px);border:10px solid #fff;outline:1px solid var(--line)}
+.bar{height:6px;border-radius:3px;background:var(--line);overflow:hidden;margin:14px 0}
+.bar i{display:block;height:100%;width:0;background:var(--mint);transition:width 2.2s linear}
+
+/* track */
+.track{display:grid;grid-template-columns:380px 1fr;gap:24px;align-items:start}
+@media (max-width:900px){.track{grid-template-columns:1fr}}
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl li{position:relative;padding:0 0 22px 40px}
+.tl li::before{content:"";position:absolute;left:13px;top:28px;bottom:0;width:2px;background:var(--line)}
+.tl li:last-child::before{display:none}
+.tl .dot{position:absolute;left:0;top:0;width:28px;height:28px;border-radius:50%;background:var(--line);display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800}
+.tl li.done .dot{background:var(--mint)}
+.tl li.now .dot{background:var(--blue);box-shadow:0 0 0 6px var(--blue-soft)}
+.tl li.done::before{background:var(--mint)}
+.tl b{display:block}
+.tl span{color:var(--muted);font-size:14px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14.5px;margin-bottom:18px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;font-weight:700}
+
+.getit{background:linear-gradient(135deg,var(--blue-d),var(--blue));color:#e9f2fc}
+.getit .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.getit h2{color:#fff;font-size:clamp(28px,3.6vw,42px);font-weight:800}
+.getit ul{margin:18px 0 0;padding-left:20px;display:grid;gap:6px}
+.getit .cta{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:26px;display:grid;gap:12px}
+@media (max-width:860px){.getit .wrap{grid-template-columns:1fr}}
+footer{background:var(--ink);color:#9fb0c2;font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-top:22px;padding-bottom:calc(22px + env(safe-area-inset-bottom,0px))}
+footer a{color:#7fe0c4}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="demo"><div class="wrap">
+  <span><b>Sample clinic &amp; lab system by MizK Softwares.</b> Try booking a test, paying and tracking it. Nothing is real or charged.</span>
+  <a href="clinic-dashboard.html">Open the staff dashboard →</a>
+</div></div>
+
+<header><div class="wrap">
+  <a class="brand" href="#top"><span class="mk">+</span><span><b>Coralline Health</b><small>Clinic &amp; Diagnostics · Port Blair</small></span></a>
+  <nav class="links"><a href="#tests">Tests &amp; packages</a><a href="#how">Home collection</a><a href="#book">Book</a><a href="#track">Track report</a></nav>
+  <div class="hdr-actions">
+    <a class="btn b-ghost staff" href="clinic-dashboard.html">Staff login</a>
+    <a class="btn b-blue cartbtn" href="#book" id="cartBtn">Book now <span id="cartCount">0</span></a>
+  </div>
+</div></header>
+
+<main id="top">
+<section class="hero" style="padding:0"><div class="wrap">
+  <div>
+    <span class="pill m2">● Home collection across Port Blair</span>
+    <h1 style="margin-top:14px">Lab tests at home, <span>reports on WhatsApp.</span></h1>
+    <p class="lead">Book in 2 minutes, pay online or at your door, and track your sample live until the report is ready.</p>
+    <form class="search" id="searchForm" role="search">
+      <input id="q" type="search" placeholder="Search tests: thyroid, sugar, vitamin D…" aria-label="Search tests">
+      <button class="btn b-blue" type="submit">Search</button>
+    </form>
+    <div class="trust">
+      <div><i>✓</i>Certified pathologists</div>
+      <div><i>✓</i>Reports in 24 hours</div>
+      <div><i>✓</i>Free collection above ₹999</div>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="ph" role="img" aria-label="Lab technician testing samples"></div>
+    <div class="bd">
+      <div class="hc-row"><b>Today's home collection</b><span class="pill m2">Slots open</span></div>
+      <div class="hc-steps"><div><b>6 AM</b>first slot</div><div><b>45 min</b>avg arrival</div><div><b>24 h</b>reports</div></div>
+    </div>
+  </div>
+</div></section>
+
+<section id="tests"><div class="wrap">
+  <div class="sh"><div><h2>Tests &amp; health packages</h2><p>Prices in ₹, including GST. Add tests and book home collection.</p></div>
+    <div class="tabs" id="cats">
+      <button type="button" data-c="all" aria-pressed="true">All</button>
+      <button type="button" data-c="pkg" aria-pressed="false">Packages</button>
+      <button type="button" data-c="blood" aria-pressed="false">Blood tests</button>
+      <button type="button" data-c="fever" aria-pressed="false">Fever panel</button>
+    </div>
+  </div>
+  <div class="grid" id="testGrid"></div>
+</div></section>
+
+<section class="how" id="how"><div class="wrap">
+  <div class="sh"><div><h2>How home collection works</h2><p>A trained phlebotomist comes to your home with sealed, single-use kits.</p></div></div>
+  <div class="how-grid">
+    <div><div class="n">1</div><h4>Book online</h4><p>Choose tests, your area and a time slot that suits you.</p></div>
+    <div><div class="n">2</div><h4>Pay your way</h4><p>UPI or card online, or cash/UPI when the collector arrives.</p></div>
+    <div><div class="n">3</div><h4>Sample at home</h4><p>See your collector's name and track their arrival.</p></div>
+    <div><div class="n">4</div><h4>Report on WhatsApp</h4><p>Track progress live and get your PDF report in 24 hours.</p></div>
+  </div>
+</div></section>
+
+<section id="book"><div class="wrap">
+  <div class="sh"><div><h2>Book home collection</h2><p>Four quick steps. You can track everything afterwards.</p></div></div>
+  <div class="book">
+    <div class="panel">
+      <div class="stepper" id="stepper"><div>1. Tests</div><div>2. Patient &amp; address</div><div>3. Date &amp; time</div><div>4. Payment</div></div>
+      <div id="stepBody"></div>
+      <div class="nav-btns" id="navBtns">
+        <button class="btn b-ghost" type="button" id="backBtn">Back</button>
+        <button class="btn b-blue" type="button" id="nextBtn">Continue</button>
+      </div>
+    </div>
+    <aside class="panel summary">
+      <h3>Your booking</h3>
+      <div id="sumList"></div>
+      <div class="li"><span>Home collection</span><span id="sumFee">₹150</span></div>
+      <div class="tot"><span>Total</span><span id="sumTot">₹0</span></div>
+      <p class="muted" style="margin-top:10px">Collection is free for orders of ₹999 or more.</p>
+    </aside>
+  </div>
+</div></section>
+
+<section id="track" style="padding-top:0"><div class="wrap">
+  <div class="sh"><div><h2>Track your sample &amp; report</h2><p>Enter your booking ID. Try <b>CH-1042</b> or <b>CH-1047</b>.</p></div></div>
+  <div class="track">
+    <form class="panel" id="trackForm">
+      <label for="tid">Booking ID</label>
+      <input id="tid" placeholder="e.g. CH-1042" autocomplete="off">
+      <button class="btn b-blue" type="submit" style="margin-top:14px;width:100%">Track</button>
+      <p class="err" id="terr" hidden></p>
+    </form>
+    <div class="panel" id="trackOut"><p class="muted">Your booking status will appear here.</p></div>
+  </div>
+</div></section>
+
+<section class="getit"><div class="wrap">
+  <div>
+    <span class="pill" style="background:rgba(255,255,255,.15);color:#fff">For clinic &amp; lab owners</span>
+    <h2 style="margin-top:12px">Get this complete system for your clinic or lab</h2>
+    <ul>
+      <li>Website with online test booking and home collection slots</li>
+      <li>Online payments (UPI, cards) straight to your bank account</li>
+      <li>Live tracking for patients, reports on WhatsApp</li>
+      <li>Staff dashboard: bookings, collectors, payments and reports in one place</li>
+    </ul>
+  </div>
+  <div class="cta">
+    <b style="color:#fff;font-size:20px">Built by MizK Softwares, Port Blair</b>
+    <span>See the staff dashboard, then message us for a price for your clinic.</span>
+    <a class="btn b-white" href="clinic-dashboard.html">Open staff dashboard</a>
+    <a class="btn b-mint" target="_blank" rel="noopener" href="https://wa.me/919476058455?text=Hi%20MizK%20Softwares%2C%20I%20saw%20the%20clinic%20%26%20lab%20demo.%20I%20want%20this%20system%20for%20my%20clinic.">Ask on WhatsApp</a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 Coralline Health · Sample website, not a real clinic</span>
+  <span>Built by <a href="index.html">MizK Softwares</a>, Port Blair</span>
+</div></footer>
+
+<div class="modal" id="payModal" hidden role="dialog" aria-modal="true" aria-labelledby="payT">
+  <div class="box">
+    <h3 id="payT">Pay <span id="payAmt"></span></h3>
+    <p class="muted">Demo payment screen. On your live site this is your payment gateway's secure checkout, and money goes to your bank account.</p>
+    <div class="qr" aria-hidden="true"></div>
+    <p class="muted" style="text-align:center">Scan with any UPI app</p>
+    <div class="bar"><i id="payBar"></i></div>
+    <div style="display:flex;gap:10px">
+      <button class="btn b-ghost" type="button" id="payCancel" style="flex:1">Cancel</button>
+      <button class="btn b-mint" type="button" id="payGo" style="flex:1">Simulate payment</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ---------- shared demo store (same as dashboard) ---------- */
+const KEY='coralline_demo_v1';
+const CATALOG=[
+ {id:'p1',c:'pkg',n:'Full Body Check-up',d:'CBC, sugar, lipid, liver, kidney, thyroid, vitamins',t:'72 tests',p:1999,o:3499,tag:'Most booked'},
+ {id:'p2',c:'pkg',n:'Basic Health Check',d:'CBC, sugar, lipid, kidney basics, urine',t:'38 tests',p:999,o:1799,tag:''},
+ {id:'p3',c:'pkg',n:'Diabetes Care',d:'Fasting & PP sugar, HbA1c, kidney, urine',t:'14 tests',p:1299,o:1999,tag:''},
+ {id:'p4',c:'pkg',n:'Senior Citizen Package',d:'Full body + vitamin D, B12, ECG at home',t:'86 tests',p:2499,o:4299,tag:'For parents'},
+ {id:'b1',c:'blood',n:'Complete Blood Count (CBC)',d:'Haemoglobin, WBC, platelets',t:'24 params',p:300,o:0,tag:''},
+ {id:'b2',c:'blood',n:'Thyroid Profile (T3, T4, TSH)',d:'Thyroid function',t:'3 tests',p:550,o:0,tag:''},
+ {id:'b3',c:'blood',n:'HbA1c',d:'3-month average sugar',t:'1 test',p:450,o:0,tag:''},
+ {id:'b4',c:'blood',n:'Lipid Profile',d:'Cholesterol, HDL, LDL, triglycerides',t:'8 params',p:500,o:0,tag:''},
+ {id:'b5',c:'blood',n:'Vitamin D (25-OH)',d:'Bone and immunity health',t:'1 test',p:1200,o:0,tag:''},
+ {id:'b6',c:'blood',n:'Liver Function Test',d:'SGOT, SGPT, bilirubin, proteins',t:'11 params',p:600,o:0,tag:''},
+ {id:'f1',c:'fever',n:'Dengue NS1 Antigen',d:'Early dengue detection',t:'1 test',p:600,o:0,tag:'Monsoon'},
+ {id:'f2',c:'fever',n:'Malaria Antigen',d:'P. vivax & P. falciparum',t:'1 test',p:350,o:0,tag:''},
+ {id:'f3',c:'fever',n:'Fever Panel',d:'CBC, dengue, malaria, typhoid, urine',t:'5 tests',p:1450,o:2100,tag:''}
+];
+const AREAS=['Aberdeen Bazaar','Junglighat','Haddo','Delanipur','Dollygunj','Garacharma','Bathubasti','Phoenix Bay','Goal Ghar','Shadipur','Prem Nagar','Austinabad'];
+const SLOTS=['06:00–07:00','07:00–08:00','08:00–09:00','09:00–10:00','10:00–11:00','16:00–17:00','17:00–18:00'];
+const FEE=150,FREE_ABOVE=999;
+const ymd=d=>d.toISOString().slice(0,10);
+const addDays=(n)=>{const d=new Date();d.setHours(12,0,0,0);d.setDate(d.getDate()+n);return d};
+function seed(){
+  const P=(id)=>CATALOG.find(c=>c.id===id);
+  const mk=(no,name,phone,area,day,slot,ids,pay,status,collector,amt)=>({id:'CH-'+no,name,phone,area,addr:'House no. '+(10+no%40)+', '+area,date:ymd(addDays(day)),slot,items:ids.map(i=>({id:i,n:P(i).n,p:P(i).p})),fee:ids.reduce((s,i)=>s+P(i).p,0)>=FREE_ABOVE?0:FEE,payMode:pay,paid:pay==='online'||status==='ready'||status==='processing',status,collector,created:Date.now()-((5-day)*3600e3)});
+  return [
+   mk(1040,'Ramesh Kumar','98000 11111','Junglighat',-2,'07:00–08:00',['p1'],'online','ready','Ravi'),
+   mk(1041,'Fatima Begum','98000 22222','Haddo',-1,'06:00–07:00',['p3'],'cash','ready','Anita'),
+   mk(1042,'Priya Nair','98000 33333','Delanipur',0,'07:00–08:00',['b2','b5'],'online','processing','Anita'),
+   mk(1043,'John Ekka','98000 44444','Garacharma',0,'08:00–09:00',['f3'],'cash','collected','Joseph'),
+   mk(1044,'Sunita Das','98000 55555','Dollygunj',0,'09:00–10:00',['p4'],'online','assigned','Ravi'),
+   mk(1045,'Abdul Rahim','98000 66666','Phoenix Bay',0,'10:00–11:00',['b1','b4'],'cash','assigned','Joseph'),
+   mk(1046,'Meena Sharma','98000 77777','Bathubasti',0,'16:00–17:00',['p2'],'online','booked',''),
+   mk(1047,'Arjun Rao','98000 88888','Aberdeen Bazaar',0,'17:00–18:00',['b3'],'cash','booked',''),
+   mk(1048,'Lakshmi Iyer','98000 99999','Prem Nagar',1,'06:00–07:00',['p1'],'online','booked',''),
+   mk(1049,'Vikas Singh','98001 12345','Shadipur',1,'07:00–08:00',['f1','b1'],'cash','booked','')
+  ];
+}
+function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(s)&&s.length)return s}catch(e){}const s=seed();save(s);return s}
+function save(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
+const inr=n=>'₹'+Number(n).toLocaleString('en-IN');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const $=id=>document.getElementById(id);
+
+/* ---------- catalogue ---------- */
+let cart=[];let cat='all';let query='';
+function renderTests(){
+  const q=query.trim().toLowerCase();
+  const list=CATALOG.filter(t=>(cat==='all'||t.c===cat)&&(!q||(t.n+' '+t.d).toLowerCase().includes(q)));
+  $('testGrid').innerHTML=list.length?list.map(t=>{const inC=cart.includes(t.id);return `<article class="test"><div class="top"><h3>${esc(t.n)}</h3>${t.tag?`<span class="pill m3">${esc(t.tag)}</span>`:''}</div><p>${esc(t.d)}</p><div class="meta"><span class="pill m1">${esc(t.t)}</span><span class="pill m2">Home collection</span></div><div class="foot"><span class="price">${inr(t.p)}${t.o?`<s>${inr(t.o)}</s>`:''}</span><button type="button" class="btn b-ghost add${inC?' added':''}" data-add="${t.id}">${inC?'✓ Added':'Add'}</button></div></article>`}).join(''):`<p class="empty">No tests match "${esc(query)}". Try "sugar", "thyroid" or "vitamin".</p>`;
+}
+$('testGrid').addEventListener('click',e=>{const b=e.target.closest('[data-add]');if(!b)return;const id=b.dataset.add;cart=cart.includes(id)?cart.filter(x=>x!==id):[...cart,id];renderTests();renderSummary();if(step===0)renderStep()});
+$('cats').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cat=b.dataset.c;document.querySelectorAll('#cats button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));renderTests()});
+$('searchForm').addEventListener('submit',e=>{e.preventDefault();query=$('q').value;cat='all';document.querySelectorAll('#cats button').forEach(x=>x.setAttribute('aria-pressed',String(x.dataset.c==='all')));renderTests();$('tests').scrollIntoView()});
+$('q').addEventListener('input',e=>{query=e.target.value;renderTests()});
+
+/* ---------- booking ---------- */
+let step=0;const form={name:'',phone:'',age:'',gender:'Female',area:'',addr:'',date:ymd(addDays(0)),slot:'',pay:'online'};let lastBooking=null;
+const subtotal=()=>cart.reduce((s,id)=>s+CATALOG.find(c=>c.id===id).p,0);
+const feeFor=s=>s>=FREE_ABOVE||s===0?0:FEE;
+function renderSummary(){
+  const s=subtotal();$('cartCount').textContent=cart.length;
+  $('sumList').innerHTML=cart.length?cart.map(id=>{const t=CATALOG.find(c=>c.id===id);return `<div class="li"><span>${esc(t.n)}<button type="button" data-rm="${id}" aria-label="Remove ${esc(t.n)}">Remove</button></span><span>${inr(t.p)}</span></div>`}).join(''):'<p class="muted" style="padding:6px 0 10px">No tests added yet.</p>';
+  $('sumFee').textContent=s===0?'—':(feeFor(s)?inr(FEE):'Free');$('sumTot').textContent=inr(s+feeFor(s));
+}
+$('sumList').addEventListener('click',e=>{const b=e.target.closest('[data-rm]');if(!b)return;cart=cart.filter(x=>x!==b.dataset.rm);renderTests();renderSummary();if(step===0)renderStep()});
+function stepper(){[...$('stepper').children].forEach((d,i)=>{d.className=i<step?'done':(i===step?'on':'')})}
+function renderStep(){
+  stepper();$('navBtns').hidden=false;$('backBtn').style.visibility=step?'visible':'hidden';$('nextBtn').textContent=step===3?(form.pay==='online'?'Pay & confirm':'Confirm booking'):'Continue';
+  let h='';
+  if(step===0){h=cart.length?`<p style="margin-bottom:12px"><b>${cart.length} test${cart.length>1?'s':''} selected.</b> Add more from the list above, or continue.</p>`+cart.map(id=>{const t=CATALOG.find(c=>c.id===id);return `<div class="li"><span>${esc(t.n)}</span><span>${inr(t.p)}</span></div>`}).join(''):`<p>Add at least one test or package from the list above.</p><a class="btn b-ghost" href="#tests" style="margin-top:14px">Browse tests</a>`}
+  if(step===1){h=`<div class="fgrid">
+   <div><label for="fn">Patient name</label><input id="fn" value="${esc(form.name)}" autocomplete="name" placeholder="Full name"></div>
+   <div><label for="fp">Mobile (WhatsApp)</label><input id="fp" value="${esc(form.phone)}" inputmode="tel" placeholder="10-digit number"></div>
+   <div><label for="fa">Age</label><input id="fa" value="${esc(form.age)}" inputmode="numeric" placeholder="e.g. 45"></div>
+   <div><label for="fg">Gender</label><select id="fg">${['Female','Male','Other'].map(g=>`<option${g===form.gender?' selected':''}>${g}</option>`).join('')}</select></div>
+   <div class="full"><label for="far">Area</label><select id="far"><option value="">Select your area</option>${AREAS.map(a=>`<option${a===form.area?' selected':''}>${a}</option>`).join('')}</select></div>
+   <div class="full"><label for="fad">House address &amp; landmark</label><textarea id="fad" placeholder="House no., street, landmark">${esc(form.addr)}</textarea></div></div>`}
+  if(step===2){const days=[0,1,2,3,4,5].map(n=>addDays(n));const now=new Date();h=`<div class="days" id="days">${days.map((d,i)=>`<button type="button" data-d="${ymd(d)}" aria-pressed="${ymd(d)===form.date}">${i===0?'Today':i===1?'Tomorrow':d.toLocaleDateString('en-IN',{weekday:'short'})}<small>${d.toLocaleDateString('en-IN',{day:'numeric',month:'short'})}</small></button>`).join('')}</div>
+   <div class="slots" id="slots">${SLOTS.map(s=>{const past=form.date===ymd(addDays(0))&&parseInt(s)<=now.getHours();return `<button type="button" data-s="${s}" aria-pressed="${s===form.slot}"${past?' disabled':''}>${s}</button>`}).join('')}</div>
+   <p class="muted" style="margin-top:12px">Fasting tests? Pick an early morning slot (6–9 AM).</p>`}
+  if(step===3){const s=subtotal();h=`<div class="pay">
+   <label class="opt"><input type="radio" name="pm" value="online"${form.pay==='online'?' checked':''}><div><b>Pay online now · ${inr(s+feeFor(s))}</b><span>UPI, debit/credit card or net banking</span><div class="upi"><em>GPay</em><em>PhonePe</em><em>Paytm</em><em>BHIM UPI</em><em>Cards</em></div></div></label>
+   <label class="opt"><input type="radio" name="pm" value="cash"${form.pay==='cash'?' checked':''}><div><b>Pay at collection</b><span>Cash or UPI when the collector arrives</span></div></label></div>
+   <p class="muted" style="margin-top:12px">${esc(form.name)} · ${esc(form.area)} · ${new Date(form.date).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}, ${esc(form.slot)}</p>`}
+  if(step===4){$('navBtns').hidden=true;const b=lastBooking;h=`<div class="ok-box"><div class="tick">✓</div><h3>Booking confirmed${b.paid?' & paid':''}</h3><p class="muted" style="margin-top:6px">A confirmation would be sent to ${esc(b.phone)} on WhatsApp.</p><div class="bid">${b.id}</div><p class="muted">Our collector will reach ${esc(b.area)} on ${new Date(b.date).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}, ${esc(b.slot)}.</p>
+   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px"><a class="btn b-blue" href="#track" data-track="${b.id}">Track this booking</a><a class="btn b-ghost" href="clinic-dashboard.html">See it in the staff dashboard</a><button type="button" class="btn b-ghost" id="newBk">New booking</button></div></div>`}
+  $('stepBody').innerHTML=h+'<p class="err" id="serr" hidden></p>';
+  if(step===2){$('days').onclick=e=>{const b=e.target.closest('button');if(!b)return;form.date=b.dataset.d;form.slot='';renderStep()};$('slots').onclick=e=>{const b=e.target.closest('button');if(!b||b.disabled)return;form.slot=b.dataset.s;renderStep()}}
+  if(step===3){document.querySelectorAll('input[name=pm]').forEach(r=>r.onchange=()=>{form.pay=r.value;renderStep()})}
+  if(step===4){$('newBk').onclick=()=>{cart=[];Object.assign(form,{name:'',phone:'',age:'',area:'',addr:'',slot:''});step=0;renderTests();renderSummary();renderStep()};document.querySelector('[data-track]').onclick=()=>{$('tid').value=lastBooking.id;showTrack(lastBooking.id)}}
+}
+function fail(m){const e=$('serr');e.textContent=m;e.hidden=false}
+function collect(){if(step===1){form.name=$('fn').value.trim();form.phone=$('fp').value.trim();form.age=$('fa').value.trim();form.gender=$('fg').value;form.area=$('far').value;form.addr=$('fad').value.trim()}}
+$('backBtn').onclick=()=>{collect();step=Math.max(0,step-1);renderStep()};
+$('nextBtn').onclick=()=>{
+  collect();
+  if(step===0&&!cart.length)return fail('Add at least one test to continue.');
+  if(step===1){if(!form.name)return fail('Enter the patient name.');if(form.phone.replace(/\D/g,'').length<10)return fail('Enter a 10-digit mobile number.');if(!form.area)return fail('Select your area.');if(!form.addr)return fail('Enter your house address.')}
+  if(step===2&&!form.slot)return fail('Pick a time slot.');
+  if(step===3){return form.pay==='online'?openPay():confirmBooking(false)}
+  step++;renderStep();$('book').scrollIntoView({block:'start'});
+};
+function confirmBooking(paid){
+  const s=load();const no=Math.max(1049,...s.map(b=>+b.id.split('-')[1]))+1;const sub=subtotal();
+  const b={id:'CH-'+no,name:form.name,phone:form.phone,area:form.area,addr:form.addr,date:form.date,slot:form.slot,items:cart.map(id=>{const t=CATALOG.find(c=>c.id===id);return {id,n:t.n,p:t.p}}),fee:feeFor(sub),payMode:form.pay,paid,status:'booked',collector:'',created:Date.now()};
+  s.push(b);save(s);lastBooking=b;step=4;renderStep();
+}
+function openPay(){const s=subtotal();$('payAmt').textContent=inr(s+feeFor(s));$('payBar').style.width='0';$('payGo').disabled=false;$('payModal').hidden=false;$('payGo').focus()}
+$('payCancel').onclick=()=>{$('payModal').hidden=true};
+$('payGo').onclick=()=>{$('payGo').disabled=true;requestAnimationFrame(()=>{$('payBar').style.width='100%'});setTimeout(()=>{$('payModal').hidden=true;confirmBooking(true)},2300)};
+
+/* ---------- tracking ---------- */
+const FLOW=[['booked','Booking confirmed','We have your booking and slot.'],['assigned','Collector assigned','Your collector is scheduled for your slot.'],['collected','Sample collected','Sample sealed and on its way to the lab.'],['processing','Testing in progress','Our pathologists are running your tests.'],['ready','Report ready','Your report has been sent on WhatsApp.']];
+function showTrack(id){
+  const b=load().find(x=>x.id.toLowerCase()===id.trim().toLowerCase());
+  if(!b){$('terr').textContent='No booking found with that ID. Check the ID and try again.';$('terr').hidden=false;return}
+  $('terr').hidden=true;const k=FLOW.findIndex(f=>f[0]===b.status);
+  const total=b.items.reduce((s,i)=>s+i.p,0)+b.fee;
+  $('trackOut').innerHTML=`<div class="hc-row" style="margin-bottom:14px"><h3 style="font-size:20px">${esc(b.id)}</h3><span class="pill ${b.paid?'m2':'m3'}">${b.paid?'Paid':'Pay at collection'} · ${inr(total)}</span></div>
+   <dl class="kv"><dt>Patient</dt><dd>${esc(b.name)}</dd><dt>Tests</dt><dd>${b.items.map(i=>esc(i.n)).join(', ')}</dd><dt>Slot</dt><dd>${new Date(b.date).toLocaleDateString('en-IN',{day:'numeric',month:'short'})}, ${esc(b.slot)} · ${esc(b.area)}</dd>${b.collector?`<dt>Collector</dt><dd>${esc(b.collector)}</dd>`:''}</dl>
+   <ol class="tl">${FLOW.map((f,i)=>`<li class="${i<k?'done':(i===k?(i===4?'done':'now'):'')}"><span class="dot">${i<k||(i===k&&i===4)?'✓':i+1}</span><b>${f[1]}</b><span>${i<=k?f[2]:'Pending'}</span></li>`).join('')}</ol>
+   ${b.status==='ready'?`<button type="button" class="btn b-mint" id="dl">Download report (PDF)</button><p class="muted" id="dlm" hidden style="margin-top:8px">Demo: on your live site this opens the patient's real PDF report.</p>`:''}`;
+  const d=$('dl');if(d)d.onclick=()=>{$('dlm').hidden=false};
+}
+$('trackForm').addEventListener('submit',e=>{e.preventDefault();showTrack($('tid').value)});
+
+renderTests();renderSummary();renderStep();
+</script>
+</body>
+</html>
